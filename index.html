@@ -54,6 +54,32 @@ h1,h2,h3,h4{margin:0;font-weight:700;text-wrap:balance}
 :root[data-theme="dark"] .uai-logo{filter:none}
 .topbar .uai-logo{width:98px}
 .topbar .logo{padding-left:16px;border-left:1px solid var(--line)}
+/* cohorte */
+.cohort{margin:0 0 32px;max-width:760px}
+.cohort-q{display:flex;align-items:center;gap:6px;font:700 18px/1.2 var(--f);color:#fff;margin-bottom:12px}
+.cohort-q .info{color:#bdbdbd}
+.seg{display:flex;flex-wrap:wrap;padding:0 2px 2px 0}
+.seg button{height:44px;padding:0 16px;border:2px solid #fff;margin:0 -2px -2px 0;background:transparent;color:#fff;font:700 15px/1 var(--f);cursor:pointer;border-radius:0}
+.seg button:hover{background:rgba(255,255,255,.12)}
+.seg button[aria-checked="true"]{background:#fff;color:var(--dark)}
+.cohort-help{display:inline-block;background:rgba(29,30,32,.9);padding:2px 4px;margin:10px 0 0;font:400 13px/1.4 var(--f);color:#bdbdbd}
+.cohort-res{margin-top:16px;border-left:3px solid var(--accent);padding:14px 16px;background:rgba(29,30,32,.94);color:#fff;font:400 15px/1.45 var(--f)}
+.cohort-res b{font-weight:700}
+.cohort-res .docs{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px}
+.cohort-res .docs a{color:#fff;font-weight:700;text-underline-offset:3px}
+.cohort-res .acts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:10px}
+.cohort-res .acts button{background:none;border:0;padding:0;color:#bdbdbd;font:700 14px/1.3 var(--f);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.cohort-res .acts button:hover{color:#fff}
+.coh-chip{display:inline-flex;align-items:center;gap:6px;font:700 13px/1.2 var(--f);color:var(--accent-ink);text-decoration:none;border:2px solid currentColor;padding:6px 10px;align-self:flex-start}
+.coh-chip.unset{color:var(--ink)}
+.coh-chip:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.topbar .coh-chip{padding:4px 8px;font-size:12px;flex:none}
+.coh-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px;font:400 15px/1.35 var(--f);color:var(--meta)}
+.coh-line b{color:var(--ink)}
+.msg .coh-pick{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.msg .coh-pick button{height:36px;padding:0 12px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:700 14px/1 var(--f);cursor:pointer}
+.msg .coh-pick button:hover{background:var(--ink);color:var(--bg)}
+.coh-tag{display:inline-block;margin-left:8px;font:700 11px/1 var(--f);color:var(--accent-ink);border:1px solid currentColor;padding:3px 5px;vertical-align:2px}
 /* sidebar */
 .side{position:fixed;top:0;left:0;bottom:0;width:var(--side);padding:32px 32px 32px 40px;display:flex;flex-direction:column;gap:40px;background:var(--bg);z-index:30;border-right:1px solid var(--line)}
 .logo{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:var(--ink)}
@@ -125,7 +151,7 @@ section.sec + section.sec{border-top:1px solid var(--line)}
 /* assistant module grid */
 .chat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
 .chatbox{grid-column:span 2;display:flex;flex-direction:column;min-height:560px;min-width:0;border-right:1px solid var(--line)}
-.chat-top{display:flex;align-items:center;gap:12px;padding:18px 24px 18px 0;border-bottom:1px solid var(--line)}
+.chat-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:18px 24px 18px 0;border-bottom:1px solid var(--line)}
 .chat-top .title{font:700 18px/1 var(--f)}
 .msgs{flex:1;overflow-y:auto;padding:24px 24px 24px 0;display:flex;flex-direction:column;gap:18px;max-height:620px}
 .msg{max-width:88%;font:400 16px/1.45 var(--f);min-width:0;overflow-wrap:anywhere}
@@ -292,6 +318,7 @@ footer .wrap{padding:0}
     <a href="#organigrama" data-nav="organigrama">Organigrama</a>
     <a href="#documentos" data-nav="documentos">Documentos</a>
   </nav>
+  <a class="coh-chip unset" href="#cohortBox" data-coh-chip>Indica tu año de ingreso</a>
   <div class="foot">Escuela de Comunicaciones y Periodismo · UAI<br>Prototipo independiente, no oficial.<br>Actualizado al 7-oct-2026.</div>
 </aside>
 
@@ -301,6 +328,7 @@ footer .wrap{padding:0}
   <a class="nl" href="#tramites" data-nav="tramites">Trámites</a>
   <a class="nl" href="#organigrama" data-nav="organigrama">Organigrama</a>
   <a class="nl" href="#documentos" data-nav="documentos">Documentos</a>
+  <a class="coh-chip unset" href="#cohortBox" data-coh-chip>Año de ingreso</a>
 </header>
 
 <main>
@@ -309,13 +337,19 @@ footer .wrap{padding:0}
   <div class="wrap">
     <span class="eyebrow">Escuela de Comunicaciones y Periodismo · Pregrado</span>
     <h1>Reglas, plazos y responsables en un solo lugar.</h1>
+    <div class="cohort" id="cohortBox">
+      <div class="cohort-q" id="cohQ">¿En qué año ingresaste a la UAI?<button class="info" type="button" data-tip="cohHelp" aria-label="Por qué importa tu año de ingreso"><span class="ms" aria-hidden="true">info</span></button></div>
+      <div class="seg" role="radiogroup" aria-labelledby="cohQ" id="cohSeg"></div>
+      <p class="cohort-help" id="cohHelp">Tu año de ingreso define qué reglamento te aplica. Si no lo recuerdas, revísalo en tu plan de estudio en la Intranet de pregrado.</p>
+      <div class="cohort-res" id="cohortRes" hidden aria-live="polite"></div>
+    </div>
     <form class="search" id="quickForm" autocomplete="off" role="search">
       <label for="quickQ" hidden>Escribe tu pregunta</label>
       <input id="quickQ" placeholder="¿Hasta cuándo puedo anular el semestre?">
       <button type="submit" aria-label="Preguntar"><span class="ms" aria-hidden="true">arrow_forward</span></button>
     </form>
     <div class="qs" id="heroChips"></div>
-    <div class="norm"><span class="dot" aria-hidden="true"></span>Rige el Reglamento de Pregrado 2026<button class="info" type="button" data-tip="norma" aria-label="Detalle del reglamento vigente"><span class="ms" aria-hidden="true">info</span></button></div>
+    
   </div>
 </section>
 
@@ -325,7 +359,7 @@ footer .wrap{padding:0}
       <button class="info" type="button" data-tip="ai" aria-label="Cómo funciona el asistente"><span class="ms" aria-hidden="true">info</span></button></div>
     <div class="chat">
       <div class="chatbox">
-        <div class="chat-top"><span class="title">Conversación</span><span class="meta" id="modeLbl" style="font-size:14px"></span>
+        <div class="chat-top"><span class="title">Conversación</span><span class="meta" id="modeLbl" style="font-size:14px"></span><a class="coh-chip unset" href="#cohortBox" data-coh-chip style="margin-left:8px">Año de ingreso</a>
           <button class="link" id="clearBtn" type="button" style="margin-left:auto"><span class="ms" aria-hidden="true">refresh</span>Nueva</button></div>
         <div class="msgs" id="msgs" aria-live="polite"></div>
         <div class="status" id="status"></div>
@@ -345,7 +379,7 @@ footer .wrap{padding:0}
 
 <section id="tramites" class="sec">
   <div class="wrap">
-    <div class="sec-head"><div><span class="eyebrow">Procedimientos</span><h2 style="margin-top:12px">Trámites y plazos</h2><p>Toca <span class="ms" aria-hidden="true" style="vertical-align:-4px;font-size:18px">info</span> para ver requisitos, quién resuelve y la norma.</p></div></div>
+    <div class="sec-head"><div><span class="eyebrow">Procedimientos</span><h2 style="margin-top:12px">Trámites y plazos</h2><p>Toca <span class="ms" aria-hidden="true" style="vertical-align:-4px;font-size:18px">info</span> para ver requisitos, quién resuelve y la norma.</p><div class="coh-line" id="cohTram"></div></div></div>
     <div class="deadbar" aria-label="Próximos plazos">
       <div class="deadbar-head"><span class="t">Próximos plazos</span><button class="info" type="button" data-tip="cal" aria-label="Sobre las fechas del calendario"><span class="ms" aria-hidden="true">info</span></button><span class="badge b-plain" id="todayStamp" style="margin-left:auto"></span></div>
       <ol class="deadline-row" id="timeline"></ol>
@@ -372,7 +406,7 @@ footer .wrap{padding:0}
 
 <section id="documentos" class="sec">
   <div class="wrap">
-    <div class="sec-head"><div><span class="eyebrow">Fuentes</span><h2 style="margin-top:12px">Documentos</h2><p>Reglamentos y fuentes oficiales. Toca <span class="ms" aria-hidden="true" style="vertical-align:-4px;font-size:18px">info</span> para ver alcance, versión y notas.</p></div></div>
+    <div class="sec-head"><div><span class="eyebrow">Fuentes</span><h2 style="margin-top:12px">Documentos</h2><p>Reglamentos y fuentes oficiales. Toca <span class="ms" aria-hidden="true" style="vertical-align:-4px;font-size:18px">info</span> para ver alcance, versión y notas.</p><div class="coh-line" id="cohDocs"></div></div></div>
     <div class="filters">
       <div class="field"><label for="fq">Buscar documento</label><input id="fq" type="search" placeholder="Buscar documento"></div>
       <div class="chips" id="estChips" role="group" aria-label="Filtrar por estado"></div>
@@ -394,7 +428,7 @@ footer .wrap{padding:0}
 
 <script type="text/plain" id="kb"># Base normativa UAI + Escuela de Comunicaciones y Periodismo
 
-Corte: 7 de octubre de 2026. Fuentes: alumno.uai.cl, www.uai.cl y el repositorio de documentos uai.cdn7pm.net. Las fechas de versión salen del propio documento o del encabezado HTTP Last-Modified. El catálogo completo está en `catalogo_documentos_uai_fcom.csv/.json` (51 entradas).
+Corte: 7 de octubre de 2026. Fuentes: alumno.uai.cl, www.uai.cl y el repositorio de documentos uai.cdn7pm.net. Las fechas de versión salen del propio documento o del encabezado HTTP Last-Modified. El catálogo completo está en `catalogo_documentos_uai_fcom.csv/.json` (55 entradas).
 
 ## 0. Jerarquía y vigencia
 
@@ -416,6 +450,34 @@ Corte: 7 de octubre de 2026. Fuentes: alumno.uai.cl, www.uai.cl y el repositorio
 - No se publicó un "Folleto Reglamentos 2026": las URL equivalentes devuelven 403. El Reglamento 2026 cumple ese rol.
 - No se encontró publicado el **Protocolo de Actividad de Titulación** de las carreras de la Escuela, al que remiten los arts. 11 y 44 del Reg. 2026.
 - El organigrama es de jun-2024. El Reg. 2026 ya usa la denominación "Vicerrector Académico **y de Investigación**".
+
+---
+
+## 0b. Qué reglamento te rige según tu año de ingreso (cohorte)
+
+Las reglas académicas dependen del año en que ingresaste a la UAI (tu cohorte o promoción de ingreso). El Reglamento de Pregrado 2026 aplica a todo el pregrado, pero el art. 70 establece que quienes ingresaron antes de 2026 conservan el reglamento de su cohorte (de licenciaturas y bachilleratos, o del programa de segundo ciclo que cursan) en lo que les sea **más favorable**.
+
+| Año de ingreso | Reglamento académico | Convalidaciones y homologaciones | IDs del catálogo |
+|---|---|---|---|
+| 2026 o posterior | Reglamento de los Programas de Pregrado (2-mar-2026) | Reglamento de Homologaciones y Convalidaciones (15-dic-2023, cohortes desde 2024) | UAI-REG-01, UAI-REG-03 |
+| 2025 | Reglamento 2026 + Reglamento de Licenciaturas y Bachilleratos para la promoción 2025 (D.A. 16-2025) en lo más favorable | Reglamento de Homologaciones (cohortes desde 2024) | UAI-REG-01, UAI-REG-02, UAI-REG-03 |
+| 2024 | Reglamento 2026 + Reglamento de Licenciaturas y Bachilleratos para la promoción 2024 (D.A. 6/2024) en lo más favorable | Reglamento de Homologaciones (cohortes desde 2024) | UAI-REG-01, UAI-REG-07, UAI-REG-03 |
+| 2023 o antes | Reglamento 2026 + el reglamento de licenciatura de tu cohorte en lo más favorable | Cohorte 2023: D.A. 139/2022. Cohortes anteriores: confirmar con la Secretaría Académica | UAI-REG-01, UAI-REG-08, UAI-REG-09, UAI-REG-10 |
+
+Fuentes de la tabla: art. 70 del Reglamento 2026; considerandos del Folleto Reglamentos 2025, p. 5 (D.A. 6/2024, "aplicable a contar de la promoción de ingreso 2024") y p. 18 (D.A. 139/2022, "aplicable a contar de la promoción de ingreso 2023"). Los folletos 2021–2024 están catalogados pero su contenido no se revisó en detalle en este corte.
+
+**Qué cambia en 2026 respecto del reglamento de la cohorte 2025** (comparación directa de ambos textos):
+
+- Se agrega un plazo máximo para el título profesional: 6 semestres adicionales a la duración nominal (art. 52 n.º 6b).
+- Reprobación acumulada: se agrega el tope de 9 o más ramos distintos al término del 10.º semestre (planes de 10 o más semestres). El tope de 7 al 6.º semestre ya no se limita a planes de 8 semestres (art. 52 n.º 4).
+- Se crean el segundo programa simultáneo (arts. 37–40) y la articulación con Magíster de Continuidad (art. 66).
+- Se fija la Nota Final de Título: 70 % nota de egreso + 30 % defensa (art. 28).
+
+**Cómo saber tu cohorte y tu plan de estudios:** la Intranet de pregrado muestra tu plan de estudio (malla) y tu avance académico. Si tienes dudas, pregunta en la Secretaría Académica de Pregrado.
+
+**Escuela de Comunicaciones y Periodismo:** el plan de estudios (por ejemplo, la Licenciatura en Comunicación con plan común de 3 años) depende de tu año de ingreso. Confirma con la Escuela qué plan y malla te corresponden.
+
+**Si atiendes estudiantes** (docentes, equipos administrativos o autoridades): pregunta siempre el año de ingreso antes de aplicar una regla.
 
 ---
 
@@ -690,6 +752,62 @@ Diferencia operativa en Viña del Mar: la web pide justificar en WebC Autoservic
       "paginas": "",
       "notas": "También incluido en Folleto Reglamentos 2025 p.24-45. Sanciones afectan ICA (factor S 0,9/0,8/0,7).",
       "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-REG-07",
+      "titulo": "Folleto Reglamentos UAI 2024",
+      "tipo": "Compilado de reglamentos",
+      "alcance": "General UAI",
+      "categorias": "cursos;evaluacion;alertas;eliminacion;cohorte",
+      "url": "https://alumno.uai.cl/assets/uploads/2024/04/reglamentos-uai-2024.pdf",
+      "pagina_fuente": "Búsqueda en alumno.uai.cl",
+      "fecha_version": "2024-04",
+      "estado": "Rige a la cohorte 2024 en lo más favorable (art. 70); verificar con Secretaría Académica",
+      "paginas": "",
+      "notas": "Referencia para la cohorte 2024 (Reglamento de Licenciaturas y Bachilleratos, D.A. 6/2024 según el Folleto 2025). Contenido no revisado en detalle en este corte.",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "UAI-REG-08",
+      "titulo": "Folleto Reglamentos UAI 2023",
+      "tipo": "Compilado de reglamentos",
+      "alcance": "General UAI",
+      "categorias": "cursos;evaluacion;alertas;eliminacion;cohorte",
+      "url": "https://alumno.uai.cl/assets/uploads/2023/01/reglamentos-uai-2023.pdf",
+      "pagina_fuente": "Búsqueda en alumno.uai.cl",
+      "fecha_version": "2023-01",
+      "estado": "Rige a la cohorte 2023 en lo más favorable (art. 70); verificar con Secretaría Académica",
+      "paginas": "",
+      "notas": "Referencia para la cohorte 2023. Contenido no revisado en detalle en este corte.",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "UAI-REG-09",
+      "titulo": "Folleto Reglamentos UAI 2022",
+      "tipo": "Compilado de reglamentos",
+      "alcance": "General UAI",
+      "categorias": "cursos;evaluacion;alertas;eliminacion;cohorte",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2022/01/folleto-reglamentos-2022.pdf",
+      "pagina_fuente": "Búsqueda en alumno.uai.cl",
+      "fecha_version": "2022-01",
+      "estado": "Rige a la cohorte 2022 en lo más favorable (art. 70); verificar con Secretaría Académica",
+      "paginas": "",
+      "notas": "Referencia para la cohorte 2022. Contenido no revisado en detalle en este corte.",
+      "fecha_consulta": "2026-10-08"
+    },
+    {
+      "id": "UAI-REG-10",
+      "titulo": "Folleto Reglamentos UAI 2021",
+      "tipo": "Compilado de reglamentos",
+      "alcance": "General UAI",
+      "categorias": "cursos;evaluacion;alertas;eliminacion;cohorte",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/3/2021/09/reglamentos-2021.pdf",
+      "pagina_fuente": "Búsqueda en alumno.uai.cl",
+      "fecha_version": "2021-09",
+      "estado": "Rige a la cohorte 2021 en lo más favorable (art. 70); verificar con Secretaría Académica",
+      "paginas": "",
+      "notas": "Referencia para la cohorte 2021 y anteriores. Contenido no revisado en detalle en este corte.",
+      "fecha_consulta": "2026-10-08"
     },
     {
       "id": "UAI-INS-01",
@@ -1343,6 +1461,44 @@ $("#todayStamp").textContent="Hoy, "+TODAY.toLocaleDateString("es-CL",{day:"nume
    if(v<0.18+fx*0.25){ctx.fillStyle=v<0.025?"#6493b5":`rgba(255,255,255,${(0.03+rnd()*0.10).toFixed(3)})`;ctx.fillRect(x+1,y+1,s-2,s-2);}}}
  draw();let t;addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(draw,150);});})();
 
+/* ---------- cohorte ---------- */
+const COH={
+ "2026":{chip:"Ingreso 2026",label:"2026 o después",docs:["UAI-REG-01","UAI-REG-03"],
+  res:"Te rige el <b>Reglamento de los Programas de Pregrado 2026</b> en su totalidad. Para convalidar ramos se aplica el Reglamento de Homologaciones (cohortes desde 2024).",
+  note:""},
+ "2025":{chip:"Ingreso 2025",label:"2025",docs:["UAI-REG-01","UAI-REG-02","UAI-REG-03"],
+  res:"Te rige el <b>Reglamento 2026</b>, pero si una regla del reglamento de tu cohorte (<b>Licenciaturas y Bachilleratos 2025, D.A. 16-2025</b>) te favorece más, se aplica esa (art. 70).",
+  note:"Ingresaste en 2025: si el reglamento de tu cohorte (D.A. 16-2025) tiene una regla más favorable, se aplica esa (art. 70)."},
+ "2024":{chip:"Ingreso 2024",label:"2024",docs:["UAI-REG-01","UAI-REG-07","UAI-REG-03"],
+  res:"Te rige el <b>Reglamento 2026</b>, pero si una regla del reglamento de tu cohorte (<b>Licenciaturas y Bachilleratos 2024, D.A. 6/2024</b>) te favorece más, se aplica esa (art. 70).",
+  note:"Ingresaste en 2024: si el reglamento de tu cohorte (D.A. 6/2024) tiene una regla más favorable, se aplica esa (art. 70)."},
+ "2023":{chip:"Ingreso 2023 o antes",label:"2023 o antes",docs:["UAI-REG-01","UAI-REG-08","UAI-REG-09","UAI-REG-10"],
+  res:"Te rige el <b>Reglamento 2026</b>, pero si una regla del <b>reglamento de licenciatura de tu cohorte</b> te favorece más, se aplica esa (art. 70). Confirma con la Secretaría Académica cuál es el de tu año.",
+  note:"Ingresaste en 2023 o antes: si el reglamento de tu cohorte tiene una regla más favorable, se aplica esa (art. 70). Confírmalo con la Secretaría Académica."},
+ "staff":{chip:"Atiendo estudiantes",label:"Atiendo estudiantes",docs:["UAI-REG-01","UAI-REG-02","UAI-REG-07","UAI-REG-08"],
+  res:"Antes de aplicar una regla, <b>pregunta el año de ingreso del estudiante</b>. Desde 2026 rige el Reglamento de Pregrado 2026 para todos, pero quienes ingresaron antes conservan el reglamento de su cohorte en lo más favorable (art. 70).",
+  note:"Verifica el año de ingreso del estudiante: si ingresó antes de 2026, el reglamento de su cohorte se aplica en lo más favorable (art. 70)."}
+};
+const COH_ORDER=["2026","2025","2024","2023","staff"];
+const CHANGES=["Plazo máximo para el título profesional: 6 semestres adicionales a la duración nominal (art. 52 n.º 6b).","Nuevo tope de reprobación acumulada al 10.º semestre (art. 52 n.º 4).","Segundo programa simultáneo (arts. 37–40) y articulación con Magíster de Continuidad (art. 66).","Nota Final de Título: 70 % nota de egreso + 30 % defensa (art. 28)."];
+let COHORT=null;
+try{const v=localStorage.getItem("bitacora.cohorte");if(v&&COH[v])COHORT=v;}catch(e){}
+const docById=id=>CAT.find(d=>d.id===id);
+function cohortPhrase(){if(!COHORT)return "";return COHORT==="staff"?"atiendo estudiantes":(COHORT==="2023"?"ingresé en 2023 o antes":"ingresé en "+COHORT);}
+function cohortYou(){if(!COHORT)return "";return COHORT==="staff"?"atiendes estudiantes":(COHORT==="2023"?"ingresaste en 2023 o antes":"ingresaste en "+COHORT);}
+function setCohort(c,silent){COHORT=c;try{localStorage.setItem("bitacora.cohorte",c);}catch(e){}renderCohort();if(!silent&&typeof onCohortChange==="function")onCohortChange();}
+function renderCohort(){
+ $("#cohSeg").innerHTML=COH_ORDER.map(k=>`<button type="button" role="radio" data-coh="${k}" aria-checked="${COHORT===k}">${COH[k].label}</button>`).join("");
+ document.querySelectorAll("[data-coh-chip]").forEach(a=>{a.textContent=COHORT?COH[COHORT].chip+" · cambiar":(a.closest(".side")?"Indica tu año de ingreso":"Año de ingreso");a.classList.toggle("unset",!COHORT);});
+ const r=$("#cohortRes");
+ if(!COHORT){r.hidden=true;$("#cohHelp").hidden=false;}
+ else{const c=COH[COHORT];r.hidden=false;$("#cohHelp").hidden=true;
+  r.innerHTML=`${c.res}<div class="docs">${c.docs.map(id=>{const d=docById(id);return d?`<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.titulo.replace(/\s*\(.*\)$/,""))}</a>`:"";}).join("")}</div><div class="acts">${COHORT!=="2026"?`<button type="button" data-tip="cohChanges">Qué cambió en 2026</button>`:""}<button type="button" data-ask="${esc(COHORT==="staff"?"¿Cómo identifico qué reglamento aplica a un estudiante según su año de ingreso?":"¿Qué reglamento me rige y qué reglas cambian para mí según mi año de ingreso?")}">Preguntar al asistente</button></div>`;}
+ const line=COHORT?`<span>Mostrando reglas para:</span> <b>${COH[COHORT].chip}</b>${COH[COHORT].note?` <button class="info" type="button" data-tip="cohNote" aria-label="Qué significa para ti"><span class="ms" aria-hidden="true">info</span></button>`:""} <a class="coh-chip" href="#cohortBox" style="margin-left:4px">Cambiar</a>`:`<span>Las reglas pueden variar según tu año de ingreso.</span> <a class="coh-chip unset" href="#cohortBox">Indica tu año de ingreso</a>`;
+ ["#cohTram","#cohDocs"].forEach(s=>{const el=$(s);if(el)el.innerHTML=line;});
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-coh]");if(b){e.preventDefault();setCohort(b.dataset.coh);}});
+
 /* ---------- tooltips ---------- */
 const TIPS={};
 const dl=rows=>`<dl>${rows.filter(r=>r[1]).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
@@ -1353,6 +1509,9 @@ void `<b class="h">Cómo se calcula</b>Aplica las causales de los arts. 49 a 52 
 TIPS.orgnote=`<b class="h">Organigrama funcional</b>Se elaboró a partir de los reglamentos y no reemplaza al organigrama oficial de la UAI (PDF de junio de 2024).`;
 TIPS.sap=`<b class="h">Secretaría Académica de Pregrado</b>Primer ciclo: 2.º piso del Edificio F, de lunes a viernes de 9:30 a 16:30. Correo: secretariadepregrado@uai.cl. Segundo ciclo: Edificio C, con Pamela Correa. En Viña del Mar: pregradovina@uai.cl.`;
 TIPS.ai=`<b class="h">Cómo funciona</b>En esta versión web el asistente busca directamente en la normativa; la versión con IA funciona dentro de Claude. Responde solo con la normativa de esta página, actualizada al 7 de octubre de 2026. Si el asistente no está disponible, la página busca directamente en la normativa.`;
+TIPS.cohHelp=`<b class="h">Por qué importa tu año de ingreso</b>El Reglamento de Pregrado 2026 aplica a todos, pero quienes ingresaron antes de 2026 conservan el reglamento de su cohorte en lo que les sea más favorable (art. 70). Tu plan de estudio y tu malla también dependen de tu año de ingreso. Puedes verlos en la Intranet de pregrado. Tu elección se guarda solo en este navegador.`;
+TIPS.cohChanges=`<b class="h">Qué cambió en el Reglamento 2026</b><ul style="margin:4px 0 0;padding-left:18px">${CHANGES.map(c=>`<li>${esc(c)}</li>`).join("")}</ul><p style="margin:8px 0 0">Comparación con el reglamento de la cohorte 2025. Para cohortes anteriores, compáralo con el reglamento de tu año.</p>`;
+Object.defineProperty(TIPS,"cohNote",{get(){return COHORT?`<b class="h">${esc(COH[COHORT].chip)}</b>${esc(COH[COHORT].note)}`:"";},enumerable:true});
 const tt=$("#tt");let tipEl=null;
 function showTip(el){const k=el.dataset.tip;if(!TIPS[k])return;tipEl=el;tt.innerHTML=TIPS[k];tt.setAttribute("aria-hidden","false");el.setAttribute("aria-describedby","tt");
  const r=el.getBoundingClientRect(),w=tt.offsetWidth,h=tt.offsetHeight,vw=innerWidth,vh=innerHeight;
@@ -1413,8 +1572,9 @@ const TR=[
  ["join_inner","Articular con Ingeniería Comercial","Concentra tus 4 electivos del plan común en ramos de Administración y aprueba los 7 cursos de la mención Management. Obtienes ambos títulos en 6 años.","Escuela y Decanatura","Desde el 4.º semestre","Folleto y malla de la Escuela"],
  ["military_tech","Obtener tu título","La nota final es 70 % la nota de egreso y 30 % la defensa. El título se oficializa por decreto del Rector. El protocolo de titulación de la Escuela aún no está publicado.","Secretaría Académica y Secretaría General","Según protocolo","Arts. 28 y 43–47"]
 ];
-$("#tramGrid").innerHTML=TR.map(([ic,t,d,w,p,a],i)=>{TIPS["tr"+i]=`<b class="h">${esc(t)}</b>${esc(d)}${dl([["Resuelve",esc(w)],["Plazo",esc(p)],["Norma",esc(a)]])}`;
- return `<article class="tram"><div class="head">${glyph(t,40)}<span class="eyebrow">${esc(a)}</span><button class="info" type="button" data-tip="tr${i}" aria-label="Detalle: ${esc(t)}"><span class="ms" aria-hidden="true">info</span></button></div><div class="body"><h4>${esc(t)}</h4><span class="when">${esc(p)} · ${esc(w)}</span><button class="link" type="button" data-ask="${esc("Explícame paso a paso cómo "+t.charAt(0).toLowerCase()+t.slice(1)+": requisitos, a quién se dirige y plazos 2026.")}">Preguntar <span class="ms" aria-hidden="true">arrow_forward</span></button></div></article>`;}).join("");
+function renderTram(){$("#tramGrid").innerHTML=TR.map(([ic,t,d,w,p,a],i)=>{TIPS["tr"+i]=`<b class="h">${esc(t)}</b>${esc(d)}${dl([["Resuelve",esc(w)],["Plazo",esc(p)],["Norma",esc(a)]])}${COHORT&&COH[COHORT].note?`<p style="margin:10px 0 0;padding-top:10px;border-top:1px solid #444">${esc(COH[COHORT].note)}</p>`:""}`;
+ return `<article class="tram"><div class="head">${glyph(t,40)}<span class="eyebrow">${esc(a)}</span><button class="info" type="button" data-tip="tr${i}" aria-label="Detalle: ${esc(t)}"><span class="ms" aria-hidden="true">info</span></button></div><div class="body"><h4>${esc(t)}</h4><span class="when">${esc(p)} · ${esc(w)}</span><button class="link" type="button" data-ask="${esc("Explícame paso a paso cómo "+t.charAt(0).toLowerCase()+t.slice(1)+": requisitos, a quién se dirige y plazos 2026.")}">Preguntar <span class="ms" aria-hidden="true">arrow_forward</span></button></div></article>`;}).join("");}
+renderTram();
 
 /* ---------- organigrama ---------- */
 const U={
@@ -1447,13 +1607,13 @@ $("#letters").innerHTML=LET.map(([l,n])=>`<div><code>${l}</code><span>${n}</span
 
 /* ---------- documentos ---------- */
 let estF="",showAll=false;
-$("#estChips").innerHTML=[["","Todos"],["ok","Vigentes"],["warn","Por verificar"],["crit","Desactualizados"]].map(([k,l])=>`<button class="chip sl" type="button" data-est="${k}" aria-pressed="${k===""}">${l}</button>`).join("");
+$("#estChips").innerHTML=[["","Todos"],["coh","Mi cohorte"],["ok","Vigentes"],["warn","Por verificar"],["crit","Desactualizados"]].map(([k,l])=>`<button class="chip sl" type="button" data-est="${k}" aria-pressed="${k===""}">${l}</button>`).join("");
 $("#estChips").addEventListener("click",e=>{const b=e.target.closest("[data-est]");if(!b)return;estF=b.dataset.est;document.querySelectorAll("[data-est]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderTable();});
 CAT.forEach((d,i)=>TIPS["d"+i]=`<b class="h">${esc(d.titulo)}</b>${dl([["ID",esc(d.id)],["Tipo",esc(d.tipo)],["Alcance",esc(d.alcance)],["Versión",esc(d.fecha_version)],["Estado",esc(d.estado)],["Notas",esc(d.notas)]])}`);
 function renderTable(){const q=$("#fq").value.toLowerCase();
- const rows=CAT.map((d,i)=>[d,i]).filter(([d])=>(!q||(d.titulo+d.notas+d.id+d.tipo+d.alcance).toLowerCase().includes(q))&&(!estF||d._e===estF));
+ const rows=CAT.map((d,i)=>[d,i]).filter(([d])=>(!q||(d.titulo+d.notas+d.id+d.tipo+d.alcance).toLowerCase().includes(q))&&(!estF||(estF==="coh"?(COHORT&&COH[COHORT].docs.includes(d.id)):d._e===estF)));
  const vis=(showAll||q||estF)?rows:rows.slice(0,10);
- $("#tbody").innerHTML=vis.map(([d,i])=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.titulo)}</a></td><td class="st"><span class="badge ${EST[d._e][1]}">${EST[d._e][0]}</span></td><td class="act"><button class="info sl" type="button" data-tip="d${i}" aria-label="Detalle del documento"><span class="ms" aria-hidden="true">info</span></button></td></tr>`).join("")||`<tr><td colspan="3" class="on-var">No hay documentos que coincidan.</td></tr>`;
+ $("#tbody").innerHTML=vis.map(([d,i])=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.titulo)}</a>${COHORT&&COH[COHORT].docs.includes(d.id)?`<span class="coh-tag">${COHORT==="staff"?"Por cohorte":"Tu cohorte"}</span>`:""}</td><td class="st"><span class="badge ${EST[d._e][1]}">${EST[d._e][0]}</span></td><td class="act"><button class="info sl" type="button" data-tip="d${i}" aria-label="Detalle del documento"><span class="ms" aria-hidden="true">info</span></button></td></tr>`).join("")||`<tr><td colspan="3" class="on-var">${estF==="coh"&&!COHORT?"Indica tu año de ingreso para ver los reglamentos de tu cohorte.":"No hay documentos que coincidan."}</td></tr>`;
  const mb=$("#moreBtn");mb.hidden=!!(q||estF)||rows.length<=10;mb.textContent=showAll?"Mostrar menos":`Ver los ${rows.length} documentos`;}
 $("#moreBtn").onclick=()=>{showAll=!showAll;renderTable();};
 $("#fq").addEventListener("input",renderTable);renderTable();
@@ -1464,22 +1624,25 @@ function spy(){let cur="";const y=scrollY+140;secs.forEach(s=>{if(s.offsetTop<=y
 addEventListener("scroll",spy,{passive:true});spy();
 
 /* ---------- asistente ---------- */
-const SUG=["¿Qué es una alerta académica?","¿Cuáles son las causales de eliminación?","¿Hasta cuándo puedo anular el semestre?","¿Cómo convalido ramos de otra universidad?","¿Cómo se calcula la nota final de título?"];
-$("#heroChips").innerHTML=SUG.slice(0,3).map(s=>`<button type="button" data-ask="${esc(s)}">${esc(s)}</button>`).join("");
-$("#faq").innerHTML=SUG.map((s,i)=>`<button type="button" data-ask="${esc(s)}"><span>Pregunta ${String(i+1).padStart(2,"0")}</span>${esc(s)}</button>`).join("");
+const SUG_BASE=["¿Qué reglamento me rige según mi año de ingreso?","¿Qué es una alerta académica?","¿Cuáles son las causales de eliminación?","¿Hasta cuándo puedo anular el semestre?","¿Cómo convalido ramos de otra universidad?","¿Cómo se calcula la nota final de título?"];
+function sug(){return SUG_BASE.map((s,i)=>i===0&&COHORT?(COHORT==="staff"?"¿Cómo identifico qué reglamento aplica a un estudiante según su cohorte?":`¿Qué reglamento me rige si ${cohortPhrase()}?`):s);}
+function renderSug(){const S=sug();$("#heroChips").innerHTML=S.slice(0,3).map(s=>`<button type="button" data-ask="${esc(s)}">${esc(s)}</button>`).join("");$("#faq").innerHTML=S.map((s,i)=>`<button type="button" data-ask="${esc(s)}"><span>Pregunta ${String(i+1).padStart(2,"0")}</span>${esc(s)}</button>`).join("");}
+renderSug();
 const catBrief=CAT.map(d=>`${d.id} | ${d.titulo} | ${d.alcance} | ${d.estado} | ${d.url}`).join("\n");
-const RULES=`Eres "Bitácora", asistente de consulta normativa para estudiantes, docentes, administrativos y autoridades de la Escuela de Comunicaciones y Periodismo de la Universidad Adolfo Ibáñez (UAI). Fecha de hoy: ${TODAY.toISOString().slice(0,10)}.
+const RULES_BASE=`Eres "Bitácora", asistente de consulta normativa para estudiantes, docentes, administrativos y autoridades de la Escuela de Comunicaciones y Periodismo de la Universidad Adolfo Ibáñez (UAI). Fecha de hoy: ${TODAY.toISOString().slice(0,10)}.
 REGLAS:
 1. Responde SOLO con la BASE NORMATIVA y el CATÁLOGO de abajo. Si la respuesta no está ahí, dilo y sugiere a quién consultar (Secretaría Académica de Pregrado, Escuela, etc.). No inventes fechas, montos, nombres ni artículos.
 2. Escribe en español de Chile, en segunda persona (tú), con frases cortas y voz activa, en tono cercano y profesional. Empieza por la respuesta directa en una oración; luego, si aplica, pasos numerados. Máximo ~180 palabras salvo que pidan detalle. Mayúscula solo al inicio de oración y en nombres propios.
 3. Cita la fuente entre corchetes con el ID del catálogo y el artículo, p. ej. [UAI-REG-01, art. 52]. Termina con una línea "Fuentes:" con los enlaces (URL) usados.
-4. Distingue la norma general UAI de las reglas propias de la Escuela. El Reglamento 2026 rige a todos, pero quienes ingresaron antes de 2026 conservan su reglamento si es más favorable (art. 70).
+4. Distingue la norma general UAI de las reglas propias de la Escuela. El Reglamento 2026 rige a todos, pero quienes ingresaron antes de 2026 conservan el reglamento de su cohorte en lo más favorable (art. 70). Usa la sección "0b" de la base para saber qué reglamento corresponde a cada año de ingreso.
+7. La respuesta depende de la COHORTE (año de ingreso). Si se indica abajo, adapta la respuesta a esa cohorte y menciónala en la primera oración (p. ej., "Como ingresaste en 2025…"). Si no se indica y la respuesta cambia según el año de ingreso, pide a la persona que indique su año de ingreso (2026 o después, 2025, 2024, 2023 o antes) y entrega mientras tanto la regla general del Reglamento 2026. Si quien consulta atiende estudiantes, recuérdale verificar el año de ingreso del estudiante.
 5. Las fechas del calendario 2026 son por semana: indícalo y recomienda confirmar en el calendario (UAI-CAL-01).
 6. No des asesoría legal. En casos personales, recomienda confirmar con la Secretaría Académica.
 === BASE NORMATIVA ===
 ${KB}
 === CATÁLOGO (ID | título | alcance | estado | URL) ===
 ${catBrief}`;
+function rules(){const c=COHORT?(COHORT==="staff"?"Quien consulta ATIENDE ESTUDIANTES (docente, administrativo o autoridad); no es estudiante.":`COHORTE DE QUIEN CONSULTA: ${COH[COHORT].chip}. Reglamentos de referencia: ${COH[COHORT].docs.join(", ")}.`):"COHORTE DE QUIEN CONSULTA: no indicada.";return RULES_BASE+"\n=== CONTEXTO DE LA PERSONA ===\n"+c;}
 let turns=[],sample=null,ctl=null,busy=false;
 const msgs=$("#msgs");
 function md(t){let h=esc(t);
@@ -1493,13 +1656,17 @@ function md(t){let h=esc(t);
  if(list)out.push(`</${list.o?"ol":"ul"}>`);return out.join("");}
 function add(role,text){const d=document.createElement("div");d.className="msg "+(role==="user"?"u":"a");
  if(role==="user")d.textContent=text;else d.innerHTML=md(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
-function welcome(){msgs.innerHTML="";add("assistant","Hola, soy el asistente de **Bitácora Académica**. Pregúntame sobre ramos, evaluaciones, alertas académicas, trámites, certificados o articulación. En cada respuesta te indico el documento y el artículo.");}
+function welcome(){msgs.innerHTML="";
+ if(COHORT){add("assistant",COHORT==="staff"?"Hola, soy el asistente de **Bitácora Académica**. Indicaste que **atiendes estudiantes**: cuando respondas una consulta, verifica el año de ingreso del estudiante, porque el reglamento que aplica puede cambiar (art. 70). En cada respuesta te indico el documento y el artículo.":`Hola, soy el asistente de **Bitácora Académica**. Voy a responder considerando que **${cohortYou()}**. Pregúntame sobre ramos, evaluaciones, alertas académicas, trámites, certificados o articulación. En cada respuesta te indico el documento y el artículo.`);}
+ else{const d=add("assistant","Hola, soy el asistente de **Bitácora Académica**. Antes de empezar: **¿en qué año ingresaste a la UAI?** Algunas reglas cambian según tu cohorte (art. 70 del Reglamento 2026).");const p=document.createElement("div");p.className="coh-pick";p.innerHTML=COH_ORDER.map(k=>`<button type="button" data-coh="${k}">${COH[k].label}</button>`).join("");d.appendChild(p);}}
+function onCohortChange(){renderSug();renderTram();renderTable();if(!turns.length)welcome();else add("assistant",COHORT==="staff"?"Listo: consideraré que **atiendes estudiantes**.":`Listo: desde ahora consideraré que **${cohortYou()}**.`);}
 welcome();
 const SECTIONS=KB.split(/\n(?=## )/).map(s=>({t:s.split("\n")[0].replace(/^#+\s*/,""),b:s}));
 function localSearch(q){const w=q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").split(/\W+/).filter(x=>x.length>3);
  const sc=SECTIONS.map(s=>{const b=s.b.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");return {s,n:w.reduce((a,x)=>a+(b.split(x).length-1),0)};}).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,2);
  if(!sc.length)return "No encontré ese tema en la normativa recopilada. Escribe a la Secretaría Académica de Pregrado (secretariadepregrado@uai.cl).";
- return "El asistente no está disponible en este momento. Estas secciones de la normativa se relacionan con tu pregunta:\n\n"+sc.map(x=>x.s.b.slice(0,1400)+(x.s.b.length>1400?"\n…":"")).join("\n\n");}
+ const cl=COHORT?(COH[COHORT].note?COH[COHORT].note+"\n\n":""):"Recuerda indicar tu año de ingreso: algunas reglas cambian según tu cohorte (art. 70).\n\n";
+ return cl+"Estas secciones de la normativa se relacionan con tu pregunta:\n\n"+sc.map(x=>x.s.b.slice(0,1400)+(x.s.b.length>1400?"\n…":"")).join("\n\n");}
 const ERR={rate_limited:"Hiciste varias preguntas seguidas. Espera un momento.",session_expired:"Tu sesión expiró. Vuelve a iniciar sesión en Claude.",refused:"No puedo responder esa pregunta. Intenta formularla de otra manera.",empty_completion:"No obtuve respuesta. Intenta con una pregunta más concreta.",prompt_too_large:"La conversación es muy larga. Pulsa “Nueva conversación”.",upstream_error:"Se interrumpió la conexión. Vuelve a enviar tu pregunta."};
 async function ask(q){q=q.trim();if(!q||busy)return;hideTip();
  document.getElementById("asistente").scrollIntoView({block:"start"});
@@ -1507,7 +1674,7 @@ async function ask(q){q=q.trim();if(!q||busy)return;hideTip();
  const bubble=add("assistant","Pensando…");
  if(!sample){bubble.innerHTML=md(localSearch(q));turns.push({role:"assistant",content:"(búsqueda local)"});done();return;}
  ctl=new AbortController();$("#stopBtn").hidden=false;$("#status").textContent="Buscando en la normativa…";
- try{const recent=turns.slice(-8);const conv=[{role:"user",content:RULES},...(recent[0].role==="assistant"?recent.slice(1):recent)];
+ try{const recent=turns.slice(-8);const conv=[{role:"user",content:rules()},...(recent[0].role==="assistant"?recent.slice(1):recent)];
   const {text,truncated}=await sample(conv,{cache:false,signal:ctl.signal,onText:({text})=>{bubble.innerHTML=md(text);msgs.scrollTop=msgs.scrollHeight;}});
   bubble.innerHTML=md(text)+(truncated?'<div class="note">La respuesta quedó incompleta. Pregunta por un tema a la vez.</div>':"");
   turns.push({role:"assistant",content:text});
@@ -1524,6 +1691,7 @@ $("#chatIn").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.p
 $("#quickForm").addEventListener("submit",e=>{e.preventDefault();const v=$("#quickQ").value;$("#quickQ").value="";ask(v);});
 document.addEventListener("click",e=>{const b=e.target.closest("[data-ask]");if(b)ask(b.dataset.ask);});
 $("#clearBtn").onclick=()=>{if(ctl)ctl.abort();turns=[];welcome();};
+renderCohort();
 if(window.claude&&claude.use){claude.use("sample").then(s=>{sample=s;done();}).catch(()=>{sample=null;done();});}else{done();}
 })();
 </script>

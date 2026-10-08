@@ -7,10 +7,11 @@ Este proyecto es independiente y no es un sitio oficial de la UAI. La informaci�
 ## Contenido
 
 - `index.html`: el sitio. Es un solo archivo, sin dependencias de compilación.
+  - Año de ingreso (cohorte): la persona indica en qué año ingresó (2026 o después, 2025, 2024, 2023 o antes) o si atiende estudiantes. El sitio muestra qué reglamento le aplica según el art. 70 del Reglamento 2026 y adapta el asistente, los trámites y el filtro "Mi cohorte" de Documentos. La elección se guarda solo en el navegador.
   - Asistente: busca respuestas en la normativa recopilada. En GitHub Pages funciona como búsqueda local.
   - Trámites y plazos: los próximos plazos del Calendario Académico 2026 y 15 trámites con sus requisitos, quién resuelve y la norma.
   - Organigrama funcional, construido a partir de los reglamentos.
-  - Documentos: catálogo de 51 fuentes oficiales con su estado de vigencia.
+  - Documentos: catálogo de 55 fuentes oficiales con su estado de vigencia.
 - `data/`: la base de datos del sitio.
   - `base_normativa_uai_fcom_2026-10-07.md`: la normativa resumida y citada por artículo.
   - `catalogo_documentos_uai_fcom.csv` / `.json`: el catálogo de fuentes, con URL, alcance, fecha de versión y estado.
