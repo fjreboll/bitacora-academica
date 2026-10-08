@@ -1,0 +1,1568 @@
+<title>Brújula Académica FCOM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..24,400,0..1,0&display=block">
+<style>
+/* Layout: Material Design 3, versión simplificada · top app bar + navigation bar en móvil · secciones con 96 dp de separación · detalle secundario en rich tooltips.
+   Marca UAI (Guía de Identidad, nov-2024): neutros corporativos Negro #1d1e20 y Gris cálido #c7c2ba como base; Celeste #6493b5 como color de acción.
+   El rojo de la Escuela (#ed2939) se usa solo como acento gráfico mínimo (marca y filetes), nunca como fondo ni color de texto.
+   Tipografía: Roboto (tipografía web UAI) + Outfit como sustituto web de Made Tommy en titulares. */
+:root{
+  --uai-red:#ed2939; --uai-black:#1d1e20; --uai-gray:#c7c2ba; --uai-celeste:#6493b5;
+  --md-primary:#1d1e20; --md-on-primary:#ffffff;
+  --md-secondary:#2f6286; --md-on-secondary:#ffffff; --md-secondary-container:#d6e6f5; --md-on-secondary-container:#0b2a40;
+  --md-ok:#1f6c3c; --md-ok-container:#d3f0da; --md-warn:#6e4f00; --md-warn-container:#fbe6b5;
+  --md-crit:#ffffff; --md-crit-container:#1d1e20;
+  --md-surface:#fbfaf8; --md-on-surface:#1d1e20; --md-on-surface-variant:#5f5b57;
+  --md-surface-low:#f5f3f0; --md-surface-container:#efece8; --md-surface-high:#e9e5e1; --md-surface-highest:#e3dfda;
+  --md-outline:#7a7570; --md-outline-variant:#d9d4ce;
+  --md-inverse:#2f2f31; --md-on-inverse:#f2efec;
+  --md-shadow:rgba(29,30,32,.14);
+  --f-brand:"Outfit","Made Tommy","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-plain:"Roboto","Helvetica Neue",Arial,system-ui,sans-serif;
+  --f-mono:"Roboto Mono",ui-monospace,Menlo,monospace;
+  --sh-s:8px; --sh-m:12px; --sh-l:16px; --sh-xl:28px; --sh-full:999px;
+  --gap-sec:96px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --md-primary:#e6e1df; --md-on-primary:#1d1e20;
+  --md-secondary:#9ccbf3; --md-on-secondary:#003352; --md-secondary-container:#1d3a50; --md-on-secondary-container:#d6e6f5;
+  --md-ok:#88d79c; --md-ok-container:#173726; --md-warn:#f3bf48; --md-warn-container:#3d2e05;
+  --md-crit:#1d1e20; --md-crit-container:#e6e1df;
+  --md-surface:#141414; --md-on-surface:#e6e1df; --md-on-surface-variant:#bdb7b1;
+  --md-surface-low:#1d1e20; --md-surface-container:#222224; --md-surface-high:#2a2a2c; --md-surface-highest:#343436;
+  --md-outline:#948f8a; --md-outline-variant:#3a3836;
+  --md-inverse:#e6e1df; --md-on-inverse:#1d1e20;
+  --md-shadow:rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --md-primary:#e6e1df; --md-on-primary:#1d1e20;
+  --md-secondary:#9ccbf3; --md-on-secondary:#003352; --md-secondary-container:#1d3a50; --md-on-secondary-container:#d6e6f5;
+  --md-ok:#88d79c; --md-ok-container:#173726; --md-warn:#f3bf48; --md-warn-container:#3d2e05;
+  --md-crit:#1d1e20; --md-crit-container:#e6e1df;
+  --md-surface:#141414; --md-on-surface:#e6e1df; --md-on-surface-variant:#bdb7b1;
+  --md-surface-low:#1d1e20; --md-surface-container:#222224; --md-surface-high:#2a2a2c; --md-surface-highest:#343436;
+  --md-outline:#948f8a; --md-outline-variant:#3a3836;
+  --md-inverse:#e6e1df; --md-on-inverse:#1d1e20;
+  --md-shadow:rgba(0,0,0,.5); color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--md-surface);color:var(--md-on-surface);font:400 16px/24px var(--f-plain);margin:0;-webkit-font-smoothing:antialiased}
+a{color:var(--md-secondary);text-underline-offset:2px}
+:focus-visible{outline:3px solid var(--md-secondary);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:24px}
+.ms{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:20px;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;font-feature-settings:"liga";font-variation-settings:"FILL" 0,"wght" 400,"opsz" 20;display:inline-block;width:1em;overflow:hidden;flex:none}
+.ms.fill{font-variation-settings:"FILL" 1,"wght" 400,"opsz" 20}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+.display{font:700 clamp(34px,5vw,52px)/1.12 var(--f-brand);letter-spacing:-.25px}
+.headline{font:700 clamp(26px,3vw,32px)/1.25 var(--f-brand)}
+.title-l{font:500 20px/28px var(--f-plain)}
+.title-m{font:500 16px/24px var(--f-plain);letter-spacing:.15px}
+.body-m{font:400 14px/20px var(--f-plain);letter-spacing:.25px}
+.body-s{font:400 12px/16px var(--f-plain);letter-spacing:.4px}
+.label-m{font:500 12px/16px var(--f-plain);letter-spacing:.5px}
+.on-var{color:var(--md-on-surface-variant)}
+.num{font-variant-numeric:tabular-nums}
+
+.sl{position:relative;overflow:hidden;isolation:isolate}
+.sl::after{content:"";position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .15s;pointer-events:none;border-radius:inherit}
+.sl:hover::after{opacity:.08} .sl:focus-visible::after,.sl:active::after{opacity:.1}
+
+/* app bar */
+.appbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--md-surface);border-bottom:1px solid var(--md-outline-variant)}
+.appbar .wrap{display:flex;align-items:center;gap:8px;min-height:64px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--md-on-surface);text-decoration:none;margin-right:auto;min-height:48px;font:700 19px/1 var(--f-brand)}
+.brand .mark{width:4px;height:24px;background:var(--uai-red);border-radius:2px}
+.tabs{display:flex;gap:4px}
+.tab{display:flex;align-items:center;height:40px;padding:0 16px;color:var(--md-on-surface-variant);text-decoration:none;font:500 14px/20px var(--f-plain);letter-spacing:.1px;border-radius:var(--sh-full)}
+.tab[aria-current="true"]{color:var(--md-on-secondary-container);background:var(--md-secondary-container)}
+
+.navbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--md-surface-container);padding-bottom:env(safe-area-inset-bottom,0px)}
+.navbar nav{display:grid;grid-template-columns:repeat(5,1fr);height:80px}
+.navbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--md-on-surface-variant);text-decoration:none;font:500 12px/16px var(--f-plain);letter-spacing:.5px}
+.navbar .pi{width:64px;height:32px;border-radius:16px;display:grid;place-items:center}
+.navbar .pi .ms{font-size:24px}
+.navbar a[aria-current="true"]{color:var(--md-on-surface)}
+.navbar a[aria-current="true"] .pi{background:var(--md-secondary-container);color:var(--md-on-secondary-container)}
+
+/* buttons, chips */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 24px;border-radius:var(--sh-full);border:0;font:500 14px/20px var(--f-plain);letter-spacing:.1px;cursor:pointer;text-decoration:none}
+.btn .ms{margin-left:-8px}
+.btn-filled{background:var(--md-primary);color:var(--md-on-primary)}
+.btn-tonal{background:var(--md-secondary-container);color:var(--md-on-secondary-container)}
+.btn-text{background:transparent;color:var(--md-secondary);padding:0 12px}
+.btn-text .ms{margin-left:-4px}
+.btn:disabled{opacity:.38;cursor:default}
+.icon-btn{width:48px;height:48px;border-radius:var(--sh-full);display:grid;place-items:center;border:0;cursor:pointer;background:var(--md-primary);color:var(--md-on-primary)}
+.icon-btn .ms{font-size:24px}
+.info{width:32px;height:32px;border-radius:var(--sh-full);display:inline-grid;place-items:center;border:0;background:transparent;color:var(--md-on-surface-variant);cursor:help;vertical-align:middle;flex:none}
+.info .ms{font-size:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:6px 16px;border-radius:var(--sh-s);border:1px solid var(--md-outline-variant);background:transparent;color:var(--md-on-surface);font:500 14px/20px var(--f-plain);letter-spacing:.1px;cursor:pointer;text-align:left}
+.chip[aria-pressed="true"]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);border-color:transparent}
+
+.badge{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px;border-radius:var(--sh-s);font:500 12px/16px var(--f-plain);letter-spacing:.5px;white-space:nowrap;max-width:100%}
+.badge .ms{font-size:16px}
+.b-ok{background:var(--md-ok-container);color:var(--md-ok)} .b-warn{background:var(--md-warn-container);color:var(--md-warn)} .b-crit{background:var(--md-crit-container);color:var(--md-crit)}
+.b-neutral{background:var(--md-surface-high);color:var(--md-on-surface-variant)} .b-info{background:var(--md-secondary-container);color:var(--md-on-secondary-container)}
+
+.card{border-radius:var(--sh-l);padding:24px;min-width:0}
+.card-filled{background:var(--md-surface-low)}
+.card-outlined{background:var(--md-surface);border:1px solid var(--md-outline-variant)}
+
+/* rich tooltip */
+#tt{position:fixed;z-index:60;max-width:min(320px,calc(100vw - 32px));background:var(--md-surface-container);color:var(--md-on-surface);border-radius:var(--sh-m);padding:12px 16px 14px;box-shadow:0 4px 8px 3px var(--md-shadow),0 1px 3px rgba(0,0,0,.15);font:400 14px/20px var(--f-plain);letter-spacing:.25px;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s,transform .12s}
+#tt.on{opacity:1;transform:none}
+#tt b.h{display:block;font:500 14px/20px var(--f-plain);margin-bottom:4px}
+#tt dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:8px 0 0}
+#tt dt{color:var(--md-on-surface-variant);font:500 12px/20px var(--f-plain)}
+#tt dd{margin:0}
+
+/* sections */
+section.sec{padding-block:var(--gap-sec)}
+section.sec + section.sec{border-top:1px solid var(--md-outline-variant)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.sec-head p{margin:12px 0 0;max-width:60ch;color:var(--md-on-surface-variant)}
+.stack-v{display:flex;flex-direction:column;gap:24px}
+
+/* hero */
+.hero{padding-block:88px var(--gap-sec)}
+.hero .over{font:500 14px/20px var(--f-plain);color:var(--md-on-surface-variant);display:flex;align-items:center;gap:8px}
+.hero h1{margin:16px 0 20px;max-width:18ch}
+.hero .lead{font:400 18px/28px var(--f-plain);color:var(--md-on-surface-variant);max-width:52ch;margin:0 0 32px}
+.search{display:flex;align-items:center;gap:4px;height:56px;border-radius:var(--sh-xl);background:var(--md-surface-high);padding:0 4px 0 16px;max-width:620px}
+.search .ms{font-size:24px;color:var(--md-on-surface-variant)}
+.search input{flex:1;min-width:0;border:0;background:transparent;font:400 16px/24px var(--f-plain);color:var(--md-on-surface);padding:0 8px;height:100%}
+.search input::placeholder{color:var(--md-on-surface-variant)}
+.search input:focus{outline:none}
+.hero .chips{margin-top:20px}
+.norm{display:flex;align-items:center;gap:8px;margin-top:40px;font:400 14px/20px var(--f-plain);color:var(--md-on-surface-variant);flex-wrap:wrap}
+
+/* panel */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.kpi b{display:block;font:700 40px/48px var(--f-brand);font-variant-numeric:tabular-nums}
+.kpi .row{display:flex;align-items:center;gap:4px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;min-height:64px;padding:8px 0}
+.list li + li{border-top:1px solid var(--md-outline-variant)}
+.list .date{width:48px;height:48px;border-radius:var(--sh-m);background:var(--md-surface-high);display:flex;flex-direction:column;align-items:center;justify-content:center;font:500 11px/12px var(--f-plain);color:var(--md-on-surface-variant)}
+.list .date b{font:700 18px/20px var(--f-brand);color:var(--md-on-surface)}
+.list li:first-child .date{background:var(--md-secondary-container)}
+.list li:first-child .date,.list li:first-child .date b{color:var(--md-on-secondary-container)}
+.list .t{font:400 14px/20px var(--f-plain);display:flex;align-items:center;gap:4px}
+.alert-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+/* semáforo */
+.sem{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:start}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+.field{position:relative;display:flex;flex-direction:column;min-width:0}
+.field label{position:absolute;top:-8px;left:12px;padding:0 4px;background:var(--bg-field,var(--md-surface));font:400 12px/16px var(--f-plain);letter-spacing:.4px;color:var(--md-on-surface-variant);pointer-events:none;max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.field input,.field select{height:56px;border:1px solid var(--md-outline);border-radius:4px;background:transparent;color:var(--md-on-surface);font:400 16px/24px var(--f-plain);padding:0 16px;min-width:0;width:100%}
+.field input:focus,.field select:focus{outline:none;border:2px solid var(--md-secondary);padding:0 15px}
+.field:focus-within label{color:var(--md-secondary)}
+.card-filled .field{--bg-field:var(--md-surface-low)}
+.verdict{display:flex;align-items:center;gap:12px;border-radius:var(--sh-m);padding:16px;font:500 16px/24px var(--f-plain)}
+.verdict .ms{font-size:24px}
+.v-ok{background:var(--md-ok-container);color:var(--md-ok)} .v-warn{background:var(--md-warn-container);color:var(--md-warn)} .v-crit{background:var(--md-crit-container);color:var(--md-crit)}
+.result{display:flex;flex-direction:column;gap:16px}
+.result ul{margin:0;padding-left:20px;font:400 14px/20px var(--f-plain)}
+.result ul li+li{margin-top:8px}
+
+/* trámites */
+.tramites{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tram{display:flex;flex-direction:column;gap:12px;padding:20px}
+.tram .head{display:flex;align-items:center;gap:12px}
+.tram .ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--md-surface-high);color:var(--md-on-surface);flex:none}
+.tram h4{font:500 16px/22px var(--f-plain);flex:1}
+.tram .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+
+/* org */
+.org-wrap{overflow-x:auto;padding:8px 0 24px}
+.org,.org ul{list-style:none;margin:0;padding:0}
+.org{display:flex;justify-content:center;min-width:940px}
+.org ul{display:flex;justify-content:center;padding-top:28px;position:relative}
+.org li{position:relative;padding:28px 8px 0;display:flex;flex-direction:column;align-items:center}
+.org > li{padding-top:0}
+.org li::before,.org li::after{content:"";position:absolute;top:0;width:50%;height:28px;border-top:1.5px solid var(--md-outline-variant)}
+.org li::before{right:50%} .org li::after{left:50%;border-left:1.5px solid var(--md-outline-variant)}
+.org li:only-child::before,.org li:only-child::after{display:none}
+.org li:only-child{padding-top:28px}
+.org > li::before,.org > li::after{display:none}
+.org li:first-child::before,.org li:last-child::after{border:0}
+.org li:last-child::before{border-right:1.5px solid var(--md-outline-variant);border-radius:0 8px 0 0}
+.org li:first-child::after{border-radius:8px 0 0 0}
+.org ul::before{content:"";position:absolute;top:0;left:50%;height:28px;border-left:1.5px solid var(--md-outline-variant)}
+.node{font:500 13px/18px var(--f-plain);text-align:center;background:var(--md-surface-low);border:1px solid var(--md-outline-variant);border-radius:var(--sh-m);padding:10px 14px;min-height:48px;max-width:160px;cursor:pointer;color:var(--md-on-surface)}
+.node.k-fcom{box-shadow:inset 0 -3px 0 var(--uai-red)}
+.node.k-body{border-style:dashed;background:transparent}
+.node[aria-pressed="true"]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);border-color:transparent}
+.bodies{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin:8px 0 40px}
+.legend-org{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font:400 12px/16px var(--f-plain);color:var(--md-on-surface-variant);margin-bottom:24px}
+.legend-org i{display:inline-block;width:16px;height:10px;border:1px solid var(--md-outline-variant);border-radius:3px;margin-right:6px;vertical-align:-1px}
+.letters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.letters .card{padding:16px}
+.letters code{display:block;font:500 15px/22px var(--f-mono);letter-spacing:2px;margin-bottom:2px}
+
+/* table */
+.filters{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:20px}
+.filters .field{flex:1 1 280px}
+.tbl-wrap{border:1px solid var(--md-outline-variant);border-radius:var(--sh-l);overflow:hidden}
+table{border-collapse:collapse;width:100%;font:400 14px/20px var(--f-plain)}
+th,td{text-align:left;padding:14px 20px;vertical-align:middle}
+th{font:500 14px/20px var(--f-plain);color:var(--md-on-surface-variant);background:var(--md-surface-low)}
+tbody tr + tr td{border-top:1px solid var(--md-outline-variant)}
+td.st{width:1%;white-space:nowrap}
+td.act{width:1%;white-space:nowrap;text-align:right}
+td a{color:var(--md-on-surface);text-decoration:none;font-weight:500}
+td a:hover{text-decoration:underline}
+.more{display:flex;justify-content:center;margin-top:16px}
+
+/* chat */
+.chat{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:24px}
+.chatbox{background:var(--md-surface-low);border-radius:var(--sh-l);display:flex;flex-direction:column;min-height:520px;min-width:0}
+.msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;max-height:600px}
+.msg{max-width:86%;padding:12px 16px;border-radius:20px;font:400 14px/20px var(--f-plain);letter-spacing:.25px;min-width:0;overflow-wrap:anywhere}
+.msg.u{align-self:flex-end;background:var(--md-secondary-container);color:var(--md-on-secondary-container);border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start;background:var(--md-surface);color:var(--md-on-surface);border-bottom-left-radius:4px}
+.msg.a p{margin:0 0 8px} .msg.a p:last-child{margin:0}
+.msg.a ul,.msg.a ol{margin:4px 0 8px;padding-left:20px}
+.msg.a code{font-family:var(--f-mono);font-size:.9em;background:var(--md-surface-high);padding:1px 4px;border-radius:4px}
+.msg.a h4{margin:8px 0 4px;font:500 15px/22px var(--f-plain)}
+.msg .note{font:400 12px/16px var(--f-plain);color:var(--md-on-surface-variant);margin-top:8px}
+.composer{display:flex;gap:8px;align-items:flex-end;padding:12px 16px 16px}
+.composer .field{flex:1;--bg-field:var(--md-surface-low)}
+.composer textarea{min-height:56px;max-height:160px;resize:vertical;border:1px solid var(--md-outline);border-radius:4px;background:transparent;color:var(--md-on-surface);font:400 16px/24px var(--f-plain);padding:14px 16px;min-width:0}
+.composer textarea:focus{outline:none;border:2px solid var(--md-secondary);padding:13px 15px}
+.status{font:400 12px/16px var(--f-plain);color:var(--md-on-surface-variant);padding:0 20px}
+.chat-top{display:flex;align-items:center;gap:8px;padding:12px 12px 12px 20px;border-bottom:1px solid var(--md-outline-variant)}
+.aside-list{display:flex;flex-direction:column;gap:8px}
+.aside-list .chip{width:100%}
+
+.fab{position:fixed;right:24px;bottom:24px;z-index:25;display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 20px 0 16px;border-radius:var(--sh-l);background:var(--md-secondary-container);color:var(--md-on-secondary-container);font:500 14px/20px var(--f-plain);text-decoration:none;box-shadow:0 4px 8px 3px var(--md-shadow),0 1px 3px rgba(0,0,0,.2)}
+.fab .ms{font-size:24px}
+footer{padding-block:48px 64px;border-top:1px solid var(--md-outline-variant);font:400 12px/18px var(--f-plain);letter-spacing:.4px;color:var(--md-on-surface-variant)}
+
+@media (max-width:900px){
+  :root{--gap-sec:72px}
+  .grid2,.sem,.chat{grid-template-columns:minmax(0,1fr)}
+  .tramites{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .letters{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  :root{--gap-sec:56px}
+  .wrap{padding-inline:16px}
+  .tabs{display:none}
+  .navbar{display:block}
+  body{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+  .fab{bottom:calc(96px + env(safe-area-inset-bottom,0px));right:16px;width:56px;padding:0;justify-content:center}
+  .fab .txt{display:none}
+  .tramites,.form,.kpis{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-block:48px var(--gap-sec)}
+  .card{padding:20px}
+  th,td{padding:12px}
+  .list li{grid-template-columns:48px 1fr}
+  .list li .badge{grid-column:2;justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){#tt{transition:none}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<header class="appbar">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Brújula Académica, ir al inicio"><span class="mark" aria-hidden="true"></span>Brújula Académica</a>
+    <nav class="tabs" aria-label="Secciones">
+      <a class="tab sl" href="#panel" data-nav="panel">Panel</a>
+      <a class="tab sl" href="#tramites" data-nav="tramites">Trámites</a>
+      <a class="tab sl" href="#organigrama" data-nav="organigrama">Organigrama</a>
+      <a class="tab sl" href="#documentos" data-nav="documentos">Documentos</a>
+      <a class="tab sl" href="#asistente" data-nav="asistente">Asistente</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="wrap">
+    <span class="over">Escuela de Comunicaciones y Periodismo · Pregrado</span>
+    <h1 class="display">Reglas, plazos y responsables en un solo lugar</h1>
+    <p class="lead">Pregunta lo que necesites y te respondemos citando el reglamento.</p>
+    <form class="search" id="quickForm" autocomplete="off" role="search">
+      <span class="ms" aria-hidden="true">search</span>
+      <label for="quickQ" hidden>Escribe tu pregunta</label>
+      <input id="quickQ" placeholder="Ej.: ¿Hasta cuándo puedo anular el semestre?">
+      <button class="icon-btn sl" type="submit" aria-label="Preguntar"><span class="ms" aria-hidden="true">arrow_forward</span></button>
+    </form>
+    <div class="chips" id="heroChips"></div>
+    <div class="norm">
+      <span class="badge b-ok"><span class="ms" aria-hidden="true">check_circle</span>Vigente</span>
+      Rige el Reglamento de Pregrado 2026
+      <button class="info sl" type="button" data-tip="norma" aria-label="Detalle del reglamento vigente"><span class="ms" aria-hidden="true">info</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="panel" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="headline">Panel</h2><p>Qué viene en el calendario y en qué estado están los documentos.</p></div>
+      <span class="badge b-neutral" id="todayStamp"></span></div>
+    <div class="stack-v">
+      <div class="kpis" id="kpis"></div>
+      <div class="grid2">
+        <div class="card card-outlined">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:12px"><h3 class="title-l">Próximos plazos</h3><button class="info sl" type="button" data-tip="cal" aria-label="Sobre las fechas del calendario"><span class="ms" aria-hidden="true">info</span></button></div>
+          <ul class="list" id="timeline"></ul>
+        </div>
+        <div class="card card-filled" id="semaforo">
+          <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px"><h3 class="title-l">Revisa tu situación académica</h3><button class="info sl" type="button" data-tip="sem" aria-label="Cómo se calcula"><span class="ms" aria-hidden="true">info</span></button></div>
+          <p class="body-m on-var" style="margin:0 0 24px">Ingresa tus datos para saber si estás en alerta.</p>
+          <form class="form" id="semForm" onsubmit="return false">
+            <div class="field"><label for="s_sem">Semestre que cursas</label><input id="s_sem" type="number" min="1" max="14" value="3"></div>
+            <div class="field"><label for="s_dur">Duración de tu plan</label><select id="s_dur"><option value="6">6 semestres</option><option value="8" selected>8 semestres</option><option value="10">10 o más</option></select></div>
+            <div class="field"><label for="s_ins">Créditos inscritos</label><input id="s_ins" type="number" min="0" value="30"></div>
+            <div class="field"><label for="s_rep">Créditos reprobados</label><input id="s_rep" type="number" min="0" value="10"></div>
+            <div class="field"><label for="s_ppa1">PPA de este semestre</label><input id="s_ppa1" type="number" step="0.1" min="1" max="7" value="4.6"></div>
+            <div class="field"><label for="s_ppa2">PPA del semestre anterior</label><input id="s_ppa2" type="number" step="0.1" min="1" max="7" value="4.8"></div>
+            <div class="field"><label for="s_max">Veces que reprobaste un mismo ramo</label><input id="s_max" type="number" min="0" value="1"></div>
+            <div class="field"><label for="s_dist">Ramos distintos reprobados</label><input id="s_dist" type="number" min="0" value="2"></div>
+          </form>
+          <div class="result" id="semResult" aria-live="polite" style="margin-top:24px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tramites" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="headline">Trámites</h2><p>Pasa el cursor o toca <span class="ms" aria-hidden="true" style="vertical-align:-4px;font-size:18px">info</span> para ver requisitos, quién resuelve y la norma que lo regula.</p></div></div>
+    <div class="tramites" id="tramGrid"></div>
+  </div>
+</section>
+
+<section id="organigrama" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="headline">Organigrama</h2><p>Quién resuelve cada trámite según los reglamentos. Pasa el cursor o toca una unidad para ver sus funciones.</p></div>
+      <button class="info sl" type="button" data-tip="orgnote" aria-label="Sobre este organigrama"><span class="ms" aria-hidden="true">info</span></button></div>
+    <div class="org-wrap" tabindex="0" aria-label="Organigrama. Desliza horizontalmente para ver todas las unidades.">
+      <ul class="org" id="org"></ul>
+    </div>
+    <div class="bodies" id="bodies"></div>
+    <div class="legend-org"><span><i style="box-shadow:inset 0 -3px 0 var(--uai-red)"></i>Escuela de Comunicaciones y Periodismo</span><span><i style="border-style:dashed"></i>Instancias transversales</span></div>
+    <div class="card card-outlined">
+      <div style="display:flex;align-items:center;gap:4px"><h3 class="title-l">Tu secretaria de pregrado en Santiago</h3><button class="info sl" type="button" data-tip="sap" aria-label="Horario y ubicación"><span class="ms" aria-hidden="true">info</span></button></div>
+      <p class="body-m on-var" style="margin:4px 0 0">Según la inicial de tu apellido.</p>
+      <div class="letters" id="letters"></div>
+    </div>
+  </div>
+</section>
+
+<section id="documentos" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="headline">Documentos</h2><p>Reglamentos y fuentes oficiales. Toca <span class="ms" aria-hidden="true" style="vertical-align:-4px;font-size:18px">info</span> para ver alcance, versión y notas.</p></div></div>
+    <div class="filters">
+      <div class="field"><label for="fq">Buscar documento</label><input id="fq" type="search"></div>
+      <div class="chips" id="estChips" role="group" aria-label="Filtrar por estado"></div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Documento</th><th>Estado</th><th><span hidden>Detalle</span></th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+    <div class="more"><button class="btn btn-text sl" id="moreBtn" type="button"></button></div>
+  </div>
+</section>
+
+<section id="asistente" class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 class="headline">Asistente</h2><p>Responde con la normativa recopilada y cita el documento y el artículo.</p></div>
+      <button class="info sl" type="button" data-tip="ai" aria-label="Cómo funciona el asistente"><span class="ms" aria-hidden="true">info</span></button></div>
+    <div class="chat">
+      <div class="chatbox">
+        <div class="chat-top"><span class="title-m">Brújula</span><span class="body-s on-var" id="modeLbl"></span>
+          <button class="btn btn-text sl" id="clearBtn" type="button" style="margin-left:auto"><span class="ms" aria-hidden="true">refresh</span>Nueva conversación</button></div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <div class="status" id="status"></div>
+        <form class="composer" id="chatForm" autocomplete="off">
+          <div class="field"><label for="chatIn">Tu pregunta</label><textarea id="chatIn" rows="1"></textarea></div>
+          <button class="icon-btn sl" id="sendBtn" type="submit" aria-label="Enviar pregunta"><span class="ms" aria-hidden="true">send</span></button>
+          <button class="btn btn-tonal sl" id="stopBtn" type="button" hidden><span class="ms" aria-hidden="true">stop</span>Detener</button>
+        </form>
+      </div>
+      <aside>
+        <h3 class="title-m" style="margin-bottom:12px">Preguntas frecuentes</h3>
+        <div class="aside-list" id="faq"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<a class="fab sl" href="#asistente" aria-label="Preguntar al asistente"><span class="ms" aria-hidden="true">chat</span><span class="txt">Preguntar</span></a>
+
+<div class="navbar"><nav aria-label="Secciones">
+  <a href="#panel" data-nav="panel"><span class="pi"><span class="ms" aria-hidden="true">dashboard</span></span>Panel</a>
+  <a href="#tramites" data-nav="tramites"><span class="pi"><span class="ms" aria-hidden="true">assignment</span></span>Trámites</a>
+  <a href="#organigrama" data-nav="organigrama"><span class="pi"><span class="ms" aria-hidden="true">account_tree</span></span>Roles</a>
+  <a href="#documentos" data-nav="documentos"><span class="pi"><span class="ms" aria-hidden="true">folder_open</span></span>Documentos</a>
+  <a href="#asistente" data-nav="asistente"><span class="pi"><span class="ms" aria-hidden="true">forum</span></span>Asistente</a>
+</nav></div>
+
+<footer><div class="wrap">Brújula Académica · Prototipo independiente, no es un sitio oficial de la Universidad Adolfo Ibáñez. Información actualizada al 7 de octubre de 2026. Si hay diferencias, prima el documento oficial. Diseño basado en la Guía de Identidad de Marca UAI (noviembre de 2024) y Material Design 3.</div></footer>
+
+<div id="tt" role="tooltip" aria-hidden="true"></div>
+
+<script type="text/plain" id="kb"># Base normativa UAI + Escuela de Comunicaciones y Periodismo
+
+Corte: 7 de octubre de 2026. Fuentes: alumno.uai.cl, www.uai.cl y el repositorio de documentos uai.cdn7pm.net. Las fechas de versión salen del propio documento o del encabezado HTTP Last-Modified. El catálogo completo está en `catalogo_documentos_uai_fcom.csv/.json` (51 entradas).
+
+## 0. Jerarquía y vigencia
+
+| Nivel | Documento | Vigencia | ID |
+|---|---|---|---|
+| Institucional | Estatutos UAI (2016; archivo actualizado 30-jun-2026) · Reglamento Orgánico General | Vigente | UAI-INS-01/02 |
+| General de pregrado | **Reglamento de los Programas de Pregrado (2-mar-2026)** | Vigente para todo el pregrado | UAI-REG-01 |
+| General (cohortes ≤2025) | Reglamento de Licenciaturas y Bachilleratos (D.A. 16-2025) en el Folleto Reglamentos 2025 | Se aplica si es **más favorable** al estudiante (art. 70, Reg. 2026) | UAI-REG-02 |
+| Específico | Homologaciones y Convalidaciones (15-dic-2023, cohortes desde 2024) | Vigente | UAI-REG-03 |
+| Disciplinario | Código de Honor (D.A. 1-2025) | Vigente | UAI-REG-06 |
+| Calendario | Calendario Académico 2026, **versión del 22-ene-2026** | Vigente | UAI-CAL-01 |
+| Facultad | Página de carrera, folleto 2026 y mallas (Periodismo, Comunicación Estratégica, articulación con Ing. Comercial) | Vigente | FCOM-01…05 |
+
+**Alertas de actualización detectadas**
+
+- La página "Solicitudes Académicas" de Santiago todavía publica plazos del 2.º semestre de 2020 (UAI-WEB-02).
+- La página "Protocolos y Políticas" de Santiago enlaza el Calendario 2025 como si fuera el vigente.
+- Hay dos PDF del Calendario 2026: `calendario-academico-2026.pdf` (9-ene) y `calendario-academico-uai-2026.pdf` (22-ene). Hay que usar el del 22-ene.
+- No se publicó un "Folleto Reglamentos 2026": las URL equivalentes devuelven 403. El Reglamento 2026 cumple ese rol.
+- No se encontró publicado el **Protocolo de Actividad de Titulación** de las carreras de la Escuela, al que remiten los arts. 11 y 44 del Reg. 2026.
+- El organigrama es de jun-2024. El Reg. 2026 ya usa la denominación "Vicerrector Académico **y de Investigación**".
+
+---
+
+## 1. Ingreso
+
+**Admisión regular.** Se postula por el Sistema de Acceso centralizado. La carrera Comunicación Estratégica – Periodismo tiene código DEMRE 42005 en Peñalolén y 42025 en Viña del Mar. Ponderaciones 2027: NEM 10 %, Ranking 30 %, Competencia Lectora 35 %, M1 15 %, Historia o Ciencias 10 %. Aranceles 2027: UF 200 en Peñalolén y UF 170 en Viña; matrícula UF 23 y UF 21 respectivamente (FCOM-01).
+
+**Admisión especial (UAI-WEB-06)** tiene dos grupos de vías:
+
+- **Independientes de la PAES:** diplomas internacionales de los últimos 3 años; estudios secundarios o superiores en el extranjero; traslado desde otra universidad (PPA ≥ 5,5 con un año en la misma carrera, o puntaje igual o superior al corte); trayectoria laboral o escolar destacada; poseer un título profesional.
+- **Complementarias a la PAES:** certificaciones académicas UAI (hasta +25 puntos), excelencia escolar (NEM ≥ 6,0), Mujeres en STEM, deportistas destacados, diversidad cultural, PAES anterior (620–650 puntos).
+- La evaluación demora alrededor de 1,5 meses.
+- Calendario 2026: hay un último día para postular a la admisión especial del 1.er semestre (enero) y otro para la del 2.º semestre (semana del 20–25 de julio). Los resultados del 2026-S2 se publican la semana del 27 de julio.
+- Art. 27 del Reg. 2026: quien ingresa por admisión especial puede perder la posibilidad de convalidar si así lo establece su ingreso.
+
+**Inglés al ingreso** (art. 18 del Reg. 2026):
+
+- Todos rinden un test de diagnóstico.
+- El nivel requerido es B2 (C1 en International Management).
+- La asignatura se inscribe automáticamente cada semestre hasta aprobar.
+- Se puede convalidar con certificados equivalentes a B2: FCE 160–190, IELTS 5.5+, TOEFL iBT 72+, IB English SL 5+/HL 4+, Trinity ISE/GESE 7+ u Oxford Test 111–140.
+- La convalidación exige entrevista y no se aceptan cursos de menos de 4 meses (UAI-ING-01).
+
+**Convalidación y homologación (UAI-REG-03):**
+
+| Regla | Detalle |
+|---|---|
+| Tope | Hasta el 30 % de los créditos del plan, con un máximo de 6 cursos de Artes Liberales (no se cuentan los CORE) |
+| Antigüedad | 6 años o menos desde que se aprobó la asignatura (puede ser más si el estudiante ya tiene un grado, con aprobación de la VRA) |
+| Equivalencia | Al menos 50 % de contenidos coincidentes o resultados de aprendizaje equivalentes, con carga igual o mayor |
+| Plazo | La solicitud va a la Secretaría Académica al menos 10 días hábiles antes del inicio del semestre |
+| Documentos | Originales y oficiales; los del extranjero deben estar visados por Mineduc o RREE |
+| Resuelve | Director/a de Pregrado (o el Decano de Derecho en materias de Derecho); puede exigir una prueba; la decisión no admite apelación |
+| Registro | Se anota "C" (convalidada) o "H" (homologada); ninguna de las dos entra en el PPA |
+| Bachilleratos | No pueden convalidar |
+
+## 2. Cursos e inscripción (Reg. 2026)
+
+- **Categorías de asignaturas (art. 3):**
+  - introductorias
+  - mención principal
+  - Artes Liberales (CORE y electivos)
+  - especialización profesional, obligatoria para obtener el título
+  - complementarias: Inglés, Liderazgo, Expresión Oral y Educación Física
+  - segunda mención opcional
+  - extraprogramáticas
+- **Inscripción (art. 14):** la hace el propio estudiante en las fechas del Calendario. Hay tres excepciones en que inscribe la Secretaría Académica: el 1.er semestre, los bachilleratos y los semestres recuperativos.
+- **Carga académica (art. 16):** mínimo 18 créditos por semestre (sin contar Educación Física ni Inglés). El Decano de Pregrado puede autorizar otra carga, pero la autorización solo vale si queda registrada en la bitácora.
+- **Educación Física (art. 17):** 6 semestres en licenciatura y 2 en bachillerato.
+- **Asignatura reprobada (art. 19):** hay que cursarla en el semestre siguiente en que se dicte. Si el estudiante no la inscribe, se inscribe automáticamente y no se puede desinscribir.
+- **Prioridad de inscripción, ICA (art. 29):** ICA = (100·PPA·f + 240·CA/CC − 100)·B·S.
+  - f es el factor por carrera.
+  - S es el factor por sanción del Código de Honor: 0,9 (leve), 0,8 (grave) o 0,7 (gravísima).
+  - B es la bonificación por cargo estudiantil: 1,1 para presidente, 1,05 para vicepresidente y 1,03 para secretario o tesorero.
+  - Con doble programa se calcula un ICA por cada uno y se usa el más alto.
+- **Minor y concentración (art. 12):** el minor requiere al menos 16 SCT y la concentración 12 SCT. El minor de Artes Liberales incluye ahora asignaturas de **Inteligencia Artificial**.
+
+## 3. Evaluación y asistencia (Reg. 2026)
+
+| Tema | Regla | Art. |
+|---|---|---|
+| Entrega de notas | Máximo 10 días hábiles | 21 |
+| Recorrección | Se pide por escrito dentro de 5 días hábiles; el profesor responde en el mismo plazo | 21 |
+| Escala | 1,0–7,0; se aprueba con 4,0. No se puede exigir nota mínima en el examen final | 22–23 |
+| Concepto A/R | Excepcional en especialización profesional o complementarias, con autorización del Director de Docencia Institucional | 22 |
+| Nota pendiente | "P" | 23 |
+| Inasistencia a evaluación | Nota 1,0, salvo causa impediente grave (solo de salud) justificada dentro de 2 días hábiles. La ponderación pasa al examen | 24 |
+| Asistencia | Hasta 75 % (más alta con autorización del Decano). Si la exigencia es menor a 80 %, solo se justifican impedimentos de 7 o más días consecutivos; si es 80 % o más, de 3 o más días hábiles. Quien no cumple la asistencia con promedio ≥ 4,0 queda con 3,9 | 25 |
+| Regímenes especiales | Enfermedades crónicas y deportistas seleccionados nacionales tienen un procedimiento propio | 26 |
+| Promedios | PPP, PPA, NFEL y NFEC (= PPA al egreso). **NFT = 70 % NFEC + 30 % defensa de la actividad de titulación**, con 2 decimales | 28 |
+
+Diferencia operativa en Viña del Mar: la web pide justificar en WebC Autoservicio dentro de 48 horas, mientras que el reglamento da 2 días hábiles.
+
+## 4. Alertas académicas y semestre recuperativo
+
+- **Semestre recuperativo (art. 49):** se activa si en el 1.er semestre del primer año se aprueban menos de 12 créditos, o si al cierre del 1.er año se aprueban menos de 28.
+  - Solo se pueden inscribir los ramos reprobados, y la inscripción la hace la Secretaría.
+  - El **Plan de Apoyo Académico** es obligatorio.
+  - Su cumplimiento se informa a la Comisión de Gracia.
+- **Alerta Académica (art. 51):** se activa desde el 3.er semestre cuando se reprueba el 50 % o más de los créditos inscritos en un período (sin contar Educación Física, extraprogramáticas, homologadas ni convalidadas).
+  - La Decanatura de Pregrado notifica al cierre del semestre.
+  - El Plan de Apoyo es obligatorio y su cumplimiento queda en el expediente y se informa a la Comisión de Gracia.
+
+## 5. Causales de eliminación académica
+
+**Licenciatura o título profesional (art. 52):**
+
+1. PPA menor a 4,0 en dos semestres consecutivos.
+2. Después de un semestre recuperativo, haber aprobado menos de 15 créditos (recuperativo del 1.er semestre) o menos de 31 (recuperativo del 2.º).
+3. Reprobar la misma asignatura 3 veces, o reprobar 3 asignaturas distintas 2 veces cada una. No se cuentan las reprobaciones del 1.er año en primera instancia, según las condiciones del artículo.
+4. Acumular asignaturas distintas reprobadas: 5 o más al 3.er semestre, 6 o más al 4.º, 7 o más al 6.º, 8 o más al 8.º y 9 o más al 10.º. Las dos últimas aplican a planes de 10 o más semestres.
+5. No avanzar de nivel de inglés en 2 semestres consecutivos.
+6. Superar el plazo máximo:
+   - Licenciatura de 6 semestres: 2 semestres extra.
+   - Licenciatura de 7 o más semestres: 3 semestres extra.
+   - Título profesional: 6 semestres extra.
+   - Con doble programa simultáneo se suman 2 semestres más.
+
+**Otras reglas de eliminación:**
+
+- Con doble programa, las causales se evalúan por separado en cada programa (art. 53).
+- Bachillerato (art. 54): reprobar cualquier asignatura introductoria (salvo Introducción a la Microeconomía), no terminar en 3 semestres, o caer en reprobación reiterada.
+- **Procedimiento (arts. 55–56):**
+  - Resolución del Decano de Pregrado, notificada al correo institucional.
+  - Se puede pedir reconsideración ante la Comisión de Gracia dentro de **2 días hábiles**.
+  - La Comisión la integran el VRA y de Investigación, el Director de Docencia Institucional y el Decano de Pregrado. Puede invitar a un representante de la Escuela.
+  - Su decisión no admite recurso.
+- **Reingreso del eliminado (art. 65):** solo por admisión regular. No puede homologar asignaturas, salvo que ingrese a otra licenciatura.
+
+## 6. Procedimientos y solicitudes académicas
+
+| Trámite | Regla clave | Quién resuelve | Plazo 2026 según calendario (semana) |
+|---|---|---|---|
+| Cambio de programa (arts. 30–33) | Haber cursado el 1.er semestre, puntaje PAES ≥ último seleccionado, PPA ≥ 4,0 y, en 1.er año, aprobar ≥ 50 % de los créditos inscritos. Vía alternativa: 55 o más créditos aprobados y PPA ≥ 5,0. Abre un expediente nuevo con homologación | Decano de Pregrado | Para 2026-S2: semana del 15 de junio (resultados la semana del 20 de julio). Para 2027-S1: diciembre de 2026 |
+| Cambio de sede (arts. 34–35) | Haber aprobado el 1.er semestre, sin causal de eliminación ni recuperativo | Decanos de ambas sedes | Mismo plazo que el cambio de programa |
+| Segundo programa simultáneo (arts. 37–40, **nuevo**) | Haber cursado los créditos del 3.er semestre, sin causal de eliminación, y (PPA ≥ 4,5 con PAES ≥ corte) o PPA ≥ 5,0. Se paga el arancel mayor | Decano de Pregrado / VRA (excepciones) | Según calendario |
+| Anulación de semestre (art. 57) | Máximo 2 en el programa. Sin derecho a apelación. Se libera del pago de colegiaturas solo si se concede dentro de los primeros 30 días corridos del semestre | Decano de Pregrado | 2026-S1: semana del 8 de junio. 2026-S2: semana del 9 de noviembre. Bimestres: B1 abril, B2 junio, B3 septiembre, B4 diciembre |
+| Suspensión temporal (art. 58) | Antes del inicio del semestre, máximo 2 semestres, sin deudas ni causal de eliminación. Se paga la matrícula pero no las colegiaturas | Decano de Pregrado | Antes del inicio del semestre |
+| Reincorporación (art. 60) | Al terminar el período de suspensión o anulación | Decano de Pregrado; la Secretaría fija el plan | — |
+| Renuncia voluntaria (art. 62) | Sin causal de eliminación. Rige desde la resolución | Decano de Pregrado | Coincide con los plazos de anulación |
+| Abandono (art. 63) | No inscribir asignaturas, o vencer la suspensión o anulación sin hacer trámite. La deuda se mantiene | Resolución del Decano | — |
+| Reingreso o reintegro (art. 64) | Tras renuncia o abandono | Comisión de Gracia | — |
+| Desinscripción de asignaturas | — | — | 2026-S1: desde la semana del 18 de mayo hasta la semana del 8 de junio. 2026-S2: termina la semana del 9 de noviembre |
+| Justificación de inasistencias | Dentro de 2 días hábiles (reglamento) por WebC Autoservicio | Secretaría Académica | — |
+
+**Canales de atención:**
+
+- **Santiago:** secretariadepregrado@uai.cl. Oficina en el 2.º piso del Edificio F, de 9:30 a 16:30. La atención se asigna por la inicial del apellido:
+  - A-B-E-K-U-V-Z: Paulina Salcedo
+  - C-D-H-I-L-T: Camila Díaz
+  - G-O-P-S-W: Jocelyn Astudillo
+  - F-J-M-N-Q-R-Y: Fernanda Carrasco
+  - Secretaria Académica: Soledad Juacida. Secretaria Jefe: Sandra Reyes.
+  - Segundo Ciclo: Edificio C, con Pamela Correa como jefa.
+- **Viña del Mar:** "Solicitudes Online" en WebC Autoservicio y el correo pregradovina@uai.cl.
+
+## 7. Certificados y documentos
+
+- Se solicitan en **solicitudes.uai.cl** con la cuenta @alumnos.uai.cl, o por correo a certificados.sg@uai.cl.
+- Hay unos 20 tipos: alumno regular, concentración de notas, ranking, programa de estudios, egreso y título (en español e inglés), entre otros.
+- Cada año se entregan 2 certificados gratis por tipo. Los envíos entre sedes cuestan $5.000 y los internacionales $50.000. El pago se hace en finanzas.uai.cl.
+- Plazos: alumno regular 3 días hábiles; estándar hasta 10 días hábiles; programa de estudio y diploma 20 días hábiles.
+- **Expediente de título (arts. 45–47):** certificado de licenciatura, certificado de egreso, formulario de aprobación de la actividad final, constancia de no tener deudas, acta y certificado de titulación. Lo envía la Secretaría Académica a la Secretaría General y el título se oficializa por **Decreto del Rector**.
+
+## 8. Articulación
+
+- **Bachiller a licenciatura (art. 48):** quien obtiene el Bachiller de Ingeniería Comercial o de Ingeniería Civil pasa a esa carrera. Si quiere otra, debe manifestarlo a la Decanatura dentro del plazo del calendario.
+- **Magíster de Continuidad (art. 66, nuevo):**
+  - Se articula durante el segundo ciclo.
+  - El estudiante postula por el sistema de la universidad indicando sus preferencias en orden de prioridad, en el período del calendario.
+  - Debe cumplir los requisitos de admisión de cada programa.
+  - El grado se rige por el reglamento de cada magíster.
+  - Los programas son presenciales, a tiempo completo, mayoritariamente de marzo a diciembre (oferta de marzo de 2027) (UAI-WEB-07).
+- **Escuela de Comunicaciones y Periodismo (FCOM-01/02):**
+  - 3 años de plan común conducen a la **Licenciatura en Comunicación (Social)**.
+  - El 4.º año es de especialización y entrega el título de **Periodista** o **Comunicador/a Estratégico/a**.
+  - En el 5.º año se puede obtener un **segundo título** o el **Magíster en Comunicación e Innovación**. El 4.º año es además el primer año de ese magíster.
+  - En 6 años se puede completar la **articulación de Comunicación Estratégica con Ingeniería Comercial**. Para ello hay que concentrar los 4 electivos del plan común en asignaturas de Administración y aprobar 7 cursos de la mención Management. En Ingeniería Comercial se elige especialización en Finanzas, Marketing o Management.
+  - Menciones: Contenidos e industrias creativas; Sostenibilidad y relaciones comunitarias; Audiovisual y formatos digitales emergentes; Management (solo para quienes articulan).
+  - Los electivos empiezan en el 4.º semestre. El 4.º año es bimestral y la **Práctica Profesional** va en el trimestre de verano (FCOM-03/04/05).
+
+## 9. Roles (Escuela de Comunicaciones y Periodismo, consultado el 7-oct-2026)
+
+| Cargo | Nombre |
+|---|---|
+| Decana | Magdalena Browne |
+| Vicedecana | Bárbara Fuentes |
+| Director Escuela, campus Viña del Mar | Daniel Avendaño |
+| Director Carrera de Periodismo | Carlos Franco |
+| Director académico Comunicación Estratégica | Patrick Thelen |
+| Director de Investigación y Director académico del Mg. Comunicación Política y Asuntos Públicos | Andrés Scherman |
+| Director académico del Mg. Dirección Estratégica de Comunicaciones | Ernesto Escobar |
+
+**Roles generales en los reglamentos:** Decano/a de Pregrado de cada sede, Secretaría Académica de Pregrado, Director/a de Docencia Institucional, Vicerrector/a Académico/a y de Investigación, Comisión de Gracia, Secretaría General y Ombuds (Francisca Rengifo).
+
+## 10. Vacíos para completar con la Escuela
+
+1. Protocolo de Actividad de Titulación de Periodismo y de Comunicación Estratégica (requisitos, defensa y plazos).
+2. Reglamento de práctica profesional de la Escuela.
+3. Requisitos de admisión al Magíster en Comunicación e Innovación para estudiantes UAI (cupos, PPA mínimo).
+4. Reglamento de cada magíster de continuidad.
+5. Calendario específico de inscripción bimestral del segundo ciclo de Periodismo, que el calendario general menciona "según calendario específico".
+</script>
+<script type="application/json" id="catalog">{
+  "generado": "2026-10-07",
+  "fuentes": [
+    "alumno.uai.cl",
+    "www.uai.cl",
+    "uai.cdn7pm.net"
+  ],
+  "documentos": [
+    {
+      "id": "UAI-REG-01",
+      "titulo": "Reglamento de los Programas de Pregrado UAI (2 mar 2026)",
+      "tipo": "Reglamento",
+      "alcance": "General UAI",
+      "categorias": "cursos;evaluacion;alertas;eliminacion;solicitudes;articulacion;titulacion;ingreso",
+      "url": "https://uai.cdn7pm.net/documentos/reglamento-programas-de-pregrado-2026.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/como-postular/admision-directa-especial",
+      "fecha_version": "2026-03-02 (Last-Modified 2026-05-18)",
+      "estado": "Vigente (norma principal)",
+      "paginas": 21,
+      "notas": "Rige a todos los programas de pregrado (licenciatura, bachillerato y título profesional). Art. 70: cohortes previas a 2026 conservan su reglamento si es más favorable. Incorpora Título V (segundo programa simultáneo), Título XV (articulación con Magíster de Continuidad), NFT=70% NFEC+30% defensa.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-REG-02",
+      "titulo": "Folleto Reglamentos UAI 2025 (compilado de 10 reglamentos)",
+      "tipo": "Compilado de reglamentos",
+      "alcance": "General UAI",
+      "categorias": "cursos;evaluacion;alertas;eliminacion;convivencia;becas;movilidad",
+      "url": "https://uai.cdn7pm.net/documentos/folleto-reglamentos-uai-2025.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/informacion-academica/secretaria-academica/",
+      "fecha_version": "2025-04-22",
+      "estado": "Vigente para cohortes ≤2025 (aplicación supletoria art. 70 Reg. 2026)",
+      "paginas": 78,
+      "notas": "Índice: Reglamento Licenciaturas y Bachilleratos (D.A. 16-2025, cohorte 2025) p.5; Convalidaciones y Homologaciones (D.A. 94-2023) p.18; Deportes p.21; Código de Honor (D.A. 1-2025) p.24; Becas Excelencia Académica (D.A. 89-2025) p.46; Beca de Honor p.59; Beca Artes Liberales (D.R. 51/2015) p.62; Derechos y Deberes de los Estudiantes (D.R. 2019) p.64; Movilidad Estudiantil (D.R. 23-2022) p.67; Distinción Global Student Recognition (D.R. 81-2024) p.74. No se encontró folleto 2026 (URLs -2026 devuelven 403).",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-REG-03",
+      "titulo": "Reglamento de Homologaciones y Convalidaciones de Asignaturas en Licenciaturas",
+      "tipo": "Reglamento",
+      "alcance": "General UAI",
+      "categorias": "ingreso;convalidacion;articulacion",
+      "url": "https://uai.cdn7pm.net/documentos/reglamento-de-homologaciones-y-convalidaciones-2025.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/como-postular/admision-directa-especial",
+      "fecha_version": "2023-12-15 (archivo 2025-01-22)",
+      "estado": "Vigente",
+      "paginas": "4",
+      "notas": "Cohortes desde 2024. Máx. 30% de créditos convalidables; ≤6 cursos de Artes Liberales (excluye CORE); antigüedad ≤6 años; solicitud ≥10 días hábiles antes del inicio del semestre; calificación C (convalidada) / H (homologada); sin apelación.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-REG-04",
+      "titulo": "Reglamento de Becas de Excelencia Académica Pregrado 2026",
+      "tipo": "Reglamento",
+      "alcance": "General UAI",
+      "categorias": "becas;ingreso",
+      "url": "https://uai.cdn7pm.net/documentos/reglamento-becas-excelencia-academica-pregrado-2026.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/becas-y-aranceles/becas",
+      "fecha_version": "2025-12-09",
+      "estado": "Vigente (admisión 2026)",
+      "paginas": 19,
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-REG-05",
+      "titulo": "Reglamento sobre Ayudantes de Docencia 2024",
+      "tipo": "Reglamento",
+      "alcance": "General UAI",
+      "categorias": "cursos;ayudantias",
+      "url": "https://alumno.uai.cl/santiago/reglamento-ayudantes-2024/",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2024-03-06",
+      "estado": "Vigente (última versión publicada)",
+      "paginas": "",
+      "notas": "PDF servido como adjunto WordPress.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-REG-06",
+      "titulo": "Código de Honor de los Estudiantes 2025",
+      "tipo": "Reglamento disciplinario",
+      "alcance": "General UAI",
+      "categorias": "convivencia;eliminacion",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/3/2025/01/codigo-honor-2025.pdf",
+      "pagina_fuente": "WebSearch (alumno.uai.cl)",
+      "fecha_version": "2025-01 (D.A. 1-2025)",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "También incluido en Folleto Reglamentos 2025 p.24-45. Sanciones afectan ICA (factor S 0,9/0,8/0,7).",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-INS-01",
+      "titulo": "Estatutos de la Universidad Adolfo Ibáñez",
+      "tipo": "Norma institucional",
+      "alcance": "General UAI",
+      "categorias": "institucional;gobierno",
+      "url": "https://uai.cdn7pm.net/documentos/estatutos-uai.pdf",
+      "pagina_fuente": "https://www.uai.cl/la-universidad/transparencia",
+      "fecha_version": "Archivo 2026-06-30",
+      "estado": "Vigente",
+      "paginas": 13,
+      "notas": "Estatutos aprobados 2-may-2016; archivo actualizado jun-2026.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-INS-02",
+      "titulo": "Reglamento Orgánico General",
+      "tipo": "Norma institucional",
+      "alcance": "General UAI",
+      "categorias": "institucional;gobierno;roles",
+      "url": "https://uai.cdn7pm.net/documentos/reglamento-organico-general.pdf",
+      "pagina_fuente": "https://www.uai.cl/la-universidad/transparencia",
+      "fecha_version": "Archivo 2024-06-28",
+      "estado": "Vigente",
+      "paginas": 36,
+      "notas": "Define estructura de autoridades (roles).",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-INS-03",
+      "titulo": "Organigrama UAI",
+      "tipo": "Organigrama",
+      "alcance": "General UAI",
+      "categorias": "roles;gobierno",
+      "url": "https://uai.cdn7pm.net/documentos/organigrama.pdf",
+      "pagina_fuente": "https://www.uai.cl/la-universidad/transparencia",
+      "fecha_version": "Archivo 2024-06-28",
+      "estado": "Verificar (posible desfase con cargos 2026)",
+      "paginas": 1,
+      "notas": "El Reg. 2026 ya nombra 'Vicerrector Académico y de Investigación'.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-INS-04",
+      "titulo": "Plan de Desarrollo Institucional",
+      "tipo": "Plan estratégico",
+      "alcance": "General UAI",
+      "categorias": "institucional",
+      "url": "https://uai.cdn7pm.net/documentos/plan-de-desarrollo-institucional.pdf",
+      "pagina_fuente": "https://www.uai.cl/la-universidad/transparencia",
+      "fecha_version": "Archivo 2024-06-28",
+      "estado": "Vigente",
+      "paginas": 46,
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-INS-05",
+      "titulo": "Resumen Modelo de Prevención del Delito",
+      "tipo": "Política de cumplimiento",
+      "alcance": "General UAI",
+      "categorias": "cumplimiento",
+      "url": "https://uai.cdn7pm.net/documentos/resumen-modelo-prevencion-del-delito.pdf",
+      "pagina_fuente": "https://www.uai.cl/la-universidad/transparencia/etica-y-cumplimiento",
+      "fecha_version": "Archivo 2024-08-01",
+      "estado": "Vigente",
+      "paginas": 38,
+      "notas": "Reportes semestrales MPD 2017–2022 disponibles en la misma página.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-INS-06",
+      "titulo": "Informe Ombuds UAI 2025",
+      "tipo": "Informe",
+      "alcance": "General UAI",
+      "categorias": "convivencia;acoso",
+      "url": "https://uai.cdn7pm.net/documentos/informe-ombuds-uai-2025.pdf",
+      "pagina_fuente": "https://www.uai.cl/la-universidad/transparencia/politica-contra-el-acoso",
+      "fecha_version": "Archivo 2026-04-13",
+      "estado": "Vigente (periodo ene–dic 2025)",
+      "paginas": 9,
+      "notas": "Informes anteriores: 2019-2020, 2020-2022.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-CAL-01",
+      "titulo": "Calendario Académico UAI 2026 (versión 22-ene-2026)",
+      "tipo": "Calendario",
+      "alcance": "General UAI",
+      "categorias": "calendario;solicitudes;cursos",
+      "url": "https://uai.cdn7pm.net/documentos/calendario-academico-uai-2026.pdf",
+      "pagina_fuente": "https://www.uai.cl/calendario",
+      "fecha_version": "2026-01-22",
+      "estado": "Vigente (versión más reciente)",
+      "paginas": 5,
+      "notas": "Existe versión previa calendario-academico-2026.pdf (2026-01-09, 4 pp.) enlazada desde alumno.uai.cl. Usar la del 22-ene.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-CAL-02",
+      "titulo": "Calendario Académico UAI 2026 (versión 9-ene-2026)",
+      "tipo": "Calendario",
+      "alcance": "General UAI",
+      "categorias": "calendario",
+      "url": "https://uai.cdn7pm.net/documentos/calendario-academico-2026.pdf",
+      "pagina_fuente": "https://www.uai.cl/calendario-academico-2026",
+      "fecha_version": "2026-01-09",
+      "estado": "Reemplazado por UAI-CAL-01",
+      "paginas": 4,
+      "notas": "Redirect desde uai.cl/calendario-academico-2026.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-CAL-03",
+      "titulo": "Calendario Académico UAI 2025",
+      "tipo": "Calendario",
+      "alcance": "General UAI",
+      "categorias": "calendario",
+      "url": "https://uai.cdn7pm.net/documentos/calendario-academico-uai-2025.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2025",
+      "estado": "Histórico",
+      "paginas": "",
+      "notas": "Aún enlazado como vigente en la página de Protocolos (desactualizado).",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-01",
+      "titulo": "Protocolo de investigación y sanción frente al acoso",
+      "tipo": "Protocolo",
+      "alcance": "General UAI",
+      "categorias": "convivencia;acoso;denuncias",
+      "url": "https://uai.cdn7pm.net/documentos/protocolo-investigacion-y-sancion-frente-al-acoso.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "s/f",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Referido expresamente en art. 1 Reg. 2026.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-02",
+      "titulo": "Política de Inclusión y Diversidad",
+      "tipo": "Política",
+      "alcance": "General UAI",
+      "categorias": "inclusion;convivencia",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2025/10/poltica-de-inclusin-y-diversidad-.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2025-10",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Referida expresamente en art. 1 Reg. 2026.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-03",
+      "titulo": "Protocolo de Primeros Auxilios (02-09-2025)",
+      "tipo": "Protocolo",
+      "alcance": "Sede Santiago",
+      "categorias": "salud;emergencias",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2025/10/protocolo-primeros-auxilios-02-09-25.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2025-09-02",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-04",
+      "titulo": "Plan de Emergencia UAI 2023 (Emergencia de salud)",
+      "tipo": "Protocolo",
+      "alcance": "Sede Santiago",
+      "categorias": "emergencias",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2023/03/plan-de-emergencia-uai-2023-corregido.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2023-03",
+      "estado": "Vigente (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-05",
+      "titulo": "Protocolo de Emergencia y Evacuación",
+      "tipo": "Protocolo",
+      "alcance": "Sede Santiago",
+      "categorias": "emergencias",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2020/01/pdf-emergencia-y-evacuacin.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2020-01",
+      "estado": "Antiguo (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-06",
+      "titulo": "Procedimiento en caso de hurto o robo",
+      "tipo": "Procedimiento",
+      "alcance": "Sede Santiago",
+      "categorias": "convivencia;campus",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2022/06/2022-06-procedimiento-en-caso-de-hurto-o-robo-2.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/preguntas-frecuentes/",
+      "fecha_version": "2022-06",
+      "estado": "Vigente (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-07",
+      "titulo": "Política de Vida Estudiantil UAI",
+      "tipo": "Política",
+      "alcance": "General UAI",
+      "categorias": "convivencia;vida estudiantil",
+      "url": "https://alumno.uai.cl/santiago/politica-de-vida-estudiantil-uai/",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "s/f",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "PDF como adjunto WordPress.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-08",
+      "titulo": "Política de Bienestar y Salud Mental",
+      "tipo": "Política",
+      "alcance": "General UAI",
+      "categorias": "bienestar",
+      "url": "https://alumno.uai.cl/santiago/politica-de-bienestar-y-salud-mental/",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "s/f",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "PDF como adjunto WordPress.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-09",
+      "titulo": "Política para Estudiantes Deportistas Seleccionados Nacionales",
+      "tipo": "Política (decreto)",
+      "alcance": "General UAI",
+      "categorias": "cursos;justificaciones;deportes",
+      "url": "https://alumno.uai.cl/assets/uploads/sites/2/2023/07/decreto-aprueba-politica-estudiantes-deportistas-seleccionados-nacionales.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2023-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Referida en art. 26 Reg. 2026 (justificación de inasistencias).",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-10",
+      "titulo": "Política de Inclusión para Padres, Madres y Embarazadas",
+      "tipo": "Política",
+      "alcance": "General UAI",
+      "categorias": "inclusion",
+      "url": "https://alumno.uai.cl/santiago/2022-8-politica-inclusion-padres-madres-y-embarazadas/",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2022-08",
+      "estado": "Vigente (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-11",
+      "titulo": "Decreto Becas UAI 2023",
+      "tipo": "Decreto",
+      "alcance": "General UAI",
+      "categorias": "becas",
+      "url": "https://alumno.uai.cl/santiago/decreto-becas-uai-ano-2023/",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/lo-que-debes-saber/consulta-lo-que-necesites/protocolos-y-politicas-uai/",
+      "fecha_version": "2023",
+      "estado": "Histórico (reemplazado por UAI-REG-04 para 2026)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-12",
+      "titulo": "Procedimiento Seguro Escolar",
+      "tipo": "Procedimiento",
+      "alcance": "General UAI",
+      "categorias": "salud;seguros",
+      "url": "https://uai.cdn7pm.net/documentos/procedimiento-seguro-escolar.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/",
+      "fecha_version": "s/f",
+      "estado": "Vigente (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-PRO-13",
+      "titulo": "Procedimiento Seguros y Accidentes",
+      "tipo": "Procedimiento",
+      "alcance": "General UAI",
+      "categorias": "salud;seguros",
+      "url": "https://uai.cdn7pm.net/documentos/procedimiento-seguros-y-accidentes.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/",
+      "fecha_version": "s/f",
+      "estado": "Vigente (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-FIN-01",
+      "titulo": "Aranceles estudiantes antiguos Santiago 2026",
+      "tipo": "Arancel",
+      "alcance": "Sede Santiago",
+      "categorias": "finanzas",
+      "url": "https://uai.cdn7pm.net/documentos/aranceles-estudiantes-antiguos-stgo-2026.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/finanzas-estudiantiles/matriculas-y-aranceles/",
+      "fecha_version": "2026",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-FIN-02",
+      "titulo": "Aranceles estudiantes antiguos Viña del Mar 2026",
+      "tipo": "Arancel",
+      "alcance": "Sede Viña del Mar",
+      "categorias": "finanzas",
+      "url": "https://uai.cdn7pm.net/documentos/aranceles-estudiantes-antiguos-vina-2026.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/finanzas-estudiantiles/matriculas-y-aranceles/",
+      "fecha_version": "2026",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-FIN-03",
+      "titulo": "Contrato de prestación de servicios educacionales 2025 (mayores de edad)",
+      "tipo": "Contrato",
+      "alcance": "General UAI",
+      "categorias": "finanzas;matricula",
+      "url": "https://alumno.uai.cl/assets/uploads/2025/02/2025_contrato-mayores-de-edad-bajo.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/finanzas-estudiantiles/documentos-importantes/",
+      "fecha_version": "2025-02",
+      "estado": "Vigente (verificar versión 2026)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-FIN-04",
+      "titulo": "Preguntas frecuentes Becas Mineduc y CAE",
+      "tipo": "Guía",
+      "alcance": "General UAI",
+      "categorias": "becas;finanzas",
+      "url": "https://uai.cdn7pm.net/documentos/preguntas-frecuentes-becas-mineduc-y-cae.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/becas-y-aranceles/becas",
+      "fecha_version": "2026-04-23",
+      "estado": "Vigente",
+      "paginas": 10,
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-FIN-05",
+      "titulo": "Ficha de incorporación",
+      "tipo": "Formulario",
+      "alcance": "General UAI",
+      "categorias": "matricula;documentos",
+      "url": "https://uai.cdn7pm.net/documentos/ficha-de-incorporacion.pdf",
+      "pagina_fuente": "https://alumno.uai.cl/finanzas-estudiantiles/",
+      "fecha_version": "s/f",
+      "estado": "Vigente (verificar)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-ING-01",
+      "titulo": "Convalidación Programa de Inglés: tabla y escala de equivalencias",
+      "tipo": "Tabla",
+      "alcance": "General UAI",
+      "categorias": "ingreso;convalidacion;ingles",
+      "url": "https://alumno.uai.cl/santiago/tabla_convalidacion/",
+      "pagina_fuente": "https://alumno.uai.cl/santiago/programa-de-ingles/",
+      "fecha_version": "s/f",
+      "estado": "Vigente (coherente con art. 18 Reg. 2026)",
+      "paginas": "",
+      "notas": "Adjuntos: /santiago/tabla_convalidacion/ y /santiago/escala_equivalencia_convalidacion/.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-01",
+      "titulo": "Secretaría Académica (Santiago): procesos, contactos por inicial de apellido",
+      "tipo": "Página web",
+      "alcance": "Sede Santiago",
+      "categorias": "roles;contactos;documentos;solicitudes",
+      "url": "https://alumno.uai.cl/santiago/informacion-academica/secretaria-academica/",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Atención 2° piso Edificio F, 9:30–16:30; secretariadepregrado@uai.cl.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-02",
+      "titulo": "Solicitudes Académicas (Santiago): renuncia, suspensión, anulación, reincorporación, cambios",
+      "tipo": "Página web",
+      "alcance": "Sede Santiago",
+      "categorias": "solicitudes",
+      "url": "https://alumno.uai.cl/santiago/pregrado/informacion-academica/solicitudes-academicas/",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "DESACTUALIZADA (plazos de 2020)",
+      "paginas": "",
+      "notas": "Definiciones útiles, pero plazos corresponden a 2° sem. 2020. Usar Calendario 2026.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-03",
+      "titulo": "Preguntas Frecuentes (Santiago)",
+      "tipo": "Página web",
+      "alcance": "Sede Santiago",
+      "categorias": "solicitudes;justificaciones;certificados;contactos",
+      "url": "https://alumno.uai.cl/santiago/lo-que-debes-saber/preguntas-frecuentes/",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Parcialmente desactualizada (montos TNE 2023)",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-04",
+      "titulo": "Secretaría Académica (Viña del Mar): justificaciones, solicitudes online, certificados",
+      "tipo": "Página web",
+      "alcance": "Sede Viña del Mar",
+      "categorias": "solicitudes;justificaciones;certificados",
+      "url": "https://alumno.uai.cl/vina-del-mar/quienes-somos/secretaria-academica/",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Justificación vía WebC Autoservicio dentro de 48 h (la web) vs 2 días hábiles (reglamento). pregradovina@uai.cl.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-05",
+      "titulo": "Certificados académicos (procedimiento)",
+      "tipo": "Página web",
+      "alcance": "General UAI",
+      "categorias": "documentos;certificados",
+      "url": "https://www.uai.cl/certificados-academicos/",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Solicitud en solicitudes.uai.cl; 2 gratis/año por tipo; plazos 3/10/20 días hábiles.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-06",
+      "titulo": "Admisión Directa/Especial",
+      "tipo": "Página web",
+      "alcance": "General UAI",
+      "categorias": "ingreso;admision especial",
+      "url": "https://www.uai.cl/admision/como-postular/admision-directa-especial",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Vías independientes y complementarias a PAES; enlaza Reglamento 2026 y Homologaciones.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-07",
+      "titulo": "Magísteres de Continuidad (general)",
+      "tipo": "Página web",
+      "alcance": "General UAI",
+      "categorias": "articulacion;magister",
+      "url": "https://www.uai.cl/postgrados/magisteres-de-continuidad",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Forman parte del segundo ciclo de pregrado; título + grado de magíster integrados; oferta marzo 2027.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "UAI-WEB-08",
+      "titulo": "Finanzas estudiantiles: pagos, FAQ, documentos importantes, beneficios estatales",
+      "tipo": "Página web",
+      "alcance": "General UAI",
+      "categorias": "finanzas",
+      "url": "https://alumno.uai.cl/finanzas-estudiantiles/",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-01",
+      "titulo": "Licenciatura en Comunicación / Comunicación Estratégica – Periodismo (página de carrera)",
+      "tipo": "Página web",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "ingreso;articulacion;titulacion;malla",
+      "url": "https://www.uai.cl/admision/carreras/comunicacion-estrategica-periodismo-doble-titulo",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Plan común 3 años (Lic. en Comunicación Social) + 1 año título; 5 años doble título o Magíster en Comunicación e Innovación; 6 años articulación con Ing. Comercial. DEMRE 42005 (Stgo) / 42025 (Viña). Ponderaciones y aranceles 2027.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-02",
+      "titulo": "Folleto Licenciatura en Comunicación 2026",
+      "tipo": "Folleto",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "ingreso;articulacion;malla",
+      "url": "https://uai.cdn7pm.net/documentos/folleto-licenciatura-en-comunicacion-2026.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/carreras/comunicacion-estrategica-periodismo-doble-titulo",
+      "fecha_version": "2026-04-27",
+      "estado": "Vigente",
+      "paginas": 10,
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-03",
+      "titulo": "Malla curricular Periodismo",
+      "tipo": "Malla",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "cursos;malla",
+      "url": "https://uai.cdn7pm.net/documentos/malla-pregrado-periodismo.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/carreras/comunicacion-estrategica-periodismo-doble-titulo",
+      "fecha_version": "2025-10-21",
+      "estado": "Vigente",
+      "paginas": 1,
+      "notas": "8 semestres; 4° año bimestral + trimestre verano con Práctica Profesional.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-04",
+      "titulo": "Malla curricular Comunicación Estratégica",
+      "tipo": "Malla",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "cursos;malla",
+      "url": "https://uai.cdn7pm.net/documentos/malla-comunicacion-estrategica-uai.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/carreras/comunicacion-estrategica-periodismo-doble-titulo",
+      "fecha_version": "2025-10-21",
+      "estado": "Vigente",
+      "paginas": 1,
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-05",
+      "titulo": "Malla articulación Comunicación Estratégica + Ingeniería Comercial",
+      "tipo": "Malla",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "articulacion;malla",
+      "url": "https://uai.cdn7pm.net/documentos/malla-articulacion-comunicacion-estrategica-con-ingenieria-comercial.pdf",
+      "pagina_fuente": "https://www.uai.cl/admision/carreras/comunicacion-estrategica-periodismo-doble-titulo",
+      "fecha_version": "2025-10-21",
+      "estado": "Vigente (propuesta de malla)",
+      "paginas": 1,
+      "notas": "12 semestres; título Comunicación Estratégica mención Management + Ingeniería Comercial (Finanzas/Marketing/Management).",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-06",
+      "titulo": "Escuela de Comunicaciones y Periodismo – Autoridades",
+      "tipo": "Página web",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "roles;contactos",
+      "url": "https://www.uai.cl/comunicaciones/la-escuela/autoridades",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "Decana: Magdalena Browne; Vicedecana: Bárbara Fuentes; Director Viña: Daniel Avendaño; Director Carrera Periodismo: Carlos Franco; Dir. Académico Com. Estratégica: Patrick Thelen; Dir. Investigación: Andrés Scherman; Dir. Académico Mg. Dirección Estratégica de Comunicaciones: Ernesto Escobar.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-07",
+      "titulo": "Escuela de Comunicaciones y Periodismo – Carreras",
+      "tipo": "Página web",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "malla;titulacion",
+      "url": "https://www.uai.cl/comunicaciones/carreras",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente",
+      "paginas": "",
+      "notas": "",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-08",
+      "titulo": "Magísteres de Continuidad – Escuela de Comunicaciones y Periodismo",
+      "tipo": "Página web",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "articulacion;magister",
+      "url": "https://www.uai.cl/postgrados/magisteres-de-continuidad/escuela-de-comunicaciones-y-periodismo",
+      "pagina_fuente": "—",
+      "fecha_version": "Consultada 2026-10-07",
+      "estado": "Vigente (contenido mínimo, carga dinámica)",
+      "paginas": "",
+      "notas": "La página no expone requisitos específicos del Magíster en Comunicación e Innovación en HTML estático.",
+      "fecha_consulta": "2026-10-07"
+    },
+    {
+      "id": "FCOM-09",
+      "titulo": "Sitio legado comunicaciones.uai.cl (autoridades, carreras)",
+      "tipo": "Sitio web",
+      "alcance": "Facultad (Escuela de Comunicaciones y Periodismo)",
+      "categorias": "roles",
+      "url": "https://comunicaciones.uai.cl/la-escuela/autoridades/",
+      "pagina_fuente": "WebSearch",
+      "fecha_version": "s/f",
+      "estado": "Legado (verificar vigencia; el sitio oficial actual es uai.cl/comunicaciones)",
+      "paginas": "",
+      "notas": "No fue posible leerlo desde el navegador (bloqueo CORS/TLS).",
+      "fecha_consulta": "2026-10-07"
+    }
+  ]
+}</script>
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const KB=document.getElementById("kb").textContent;
+const CAT=JSON.parse(document.getElementById("catalog").textContent).documentos;
+const TODAY=new Date(); TODAY.setHours(0,0,0,0);
+const MON=["ene","feb","mar","abr","may","jun","jul","ago","sept","oct","nov","dic"];
+$("#todayStamp").textContent="Hoy, "+TODAY.toLocaleDateString("es-CL",{day:"numeric",month:"long",year:"numeric"});
+
+/* ---------- tooltips ---------- */
+const TIPS={};
+const dl=rows=>`<dl>${rows.filter(r=>r[1]).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${v}</dd>`).join("")}</dl>`;
+TIPS.norma=`<b class="h">Reglamento de los Programas de Pregrado</b>Fechado el 2 de marzo de 2026. Rige licenciaturas, bachilleratos y títulos profesionales. Si ingresaste antes de 2026, se te aplica tu reglamento anterior cuando es más favorable (art. 70).`+dl([["Novedades","Segundo programa en paralelo (arts. 37–40), articulación con Magíster de Continuidad (art. 66) y nueva nota final de título (art. 28)"]]);
+TIPS.cal=`<b class="h">Fechas por semana</b>El Calendario Académico 2026 (versión del 22 de enero) organiza los plazos por semana. Cada fecha indica el lunes de la semana en que vence el plazo. Confirma el día exacto en el PDF del calendario.`;
+TIPS.sem=`<b class="h">Cómo se calcula</b>Aplica las causales de los arts. 49 a 52 del Reglamento 2026. No se cuentan Educación Física, Inglés ni ramos extraprogramáticos, homologados o convalidados. Es orientativo: la resolución la dicta el Decano de Pregrado y, una vez notificada, tienes 2 días hábiles para pedir reconsideración a la Comisión de Gracia (art. 55).`;
+TIPS.orgnote=`<b class="h">Organigrama funcional</b>Se elaboró a partir de los reglamentos y no reemplaza al organigrama oficial de la UAI (PDF de junio de 2024).`;
+TIPS.sap=`<b class="h">Secretaría Académica de Pregrado</b>Primer ciclo: 2.º piso del Edificio F, de lunes a viernes de 9:30 a 16:30. Correo: secretariadepregrado@uai.cl. Segundo ciclo: Edificio C, con Pamela Correa. En Viña del Mar: pregradovina@uai.cl.`;
+TIPS.ai=`<b class="h">Cómo funciona</b>Usa tu cuenta de Claude y la primera vez te pide permiso. Responde solo con la normativa de esta página, actualizada al 7 de octubre de 2026. Si el asistente no está disponible, la página busca directamente en la normativa.`;
+const tt=$("#tt");let tipEl=null;
+function showTip(el){const k=el.dataset.tip;if(!TIPS[k])return;tipEl=el;tt.innerHTML=TIPS[k];tt.setAttribute("aria-hidden","false");el.setAttribute("aria-describedby","tt");
+ const r=el.getBoundingClientRect(),w=tt.offsetWidth,h=tt.offsetHeight,vw=innerWidth,vh=innerHeight;
+ let x=Math.min(Math.max(16,r.left+r.width/2-w/2),vw-w-16);let y=r.bottom+8;if(y+h>vh-16)y=Math.max(16,r.top-h-8);
+ tt.style.left=x+"px";tt.style.top=y+"px";tt.classList.add("on");}
+function hideTip(){if(tipEl)tipEl.removeAttribute("aria-describedby");tipEl=null;tt.classList.remove("on");tt.setAttribute("aria-hidden","true");}
+document.addEventListener("mouseover",e=>{const el=e.target.closest("[data-tip]");if(el&&el!==tipEl)showTip(el);else if(!el&&tipEl&&document.activeElement!==tipEl)hideTip();});
+document.addEventListener("focusin",e=>{const el=e.target.closest("[data-tip]");if(el)showTip(el);else hideTip();});
+document.addEventListener("click",e=>{const el=e.target.closest(".info[data-tip],.node[data-tip]");if(el){e.preventDefault();tipEl===el&&tt.classList.contains("on")?hideTip():showTip(el);}else if(!e.target.closest("[data-tip]"))hideTip();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")hideTip();});
+addEventListener("scroll",hideTip,{passive:true});
+
+/* ---------- estado ---------- */
+function estado(e){const s=e.toLowerCase();
+  if(/desactualiz|histórico|reemplazad|legado|antiguo|parcialmente/.test(s))return "crit";
+  if(/verificar/.test(s))return "warn"; return "ok";}
+const EST={ok:["Vigente","b-ok","check_circle"],warn:["Por verificar","b-warn","help"],crit:["Desactualizado","b-crit","error"]};
+CAT.forEach(d=>{d._e=estado(d.estado)});
+
+/* ---------- KPIs ---------- */
+const nOk=CAT.filter(d=>d._e==="ok").length;
+const AL=[
+ "La página de Solicitudes Académicas de Santiago muestra plazos de 2020.",
+ "La página de Protocolos enlaza el calendario 2025 como si fuera el vigente.",
+ "Hay dos versiones del calendario 2026; la vigente es la del 22 de enero.",
+ "El portal de estudiantes sigue enlazando el folleto de reglamentos 2025.",
+ "No está publicado el protocolo de titulación de la Escuela (arts. 11 y 44).",
+ "Viña indica 48 horas para justificar inasistencias; el reglamento, 2 días hábiles."];
+TIPS.k1=`<b class="h">Fuentes revisadas</b>alumno.uai.cl, uai.cl y el repositorio de documentos de la UAI, incluidas las páginas de la Escuela.`;
+TIPS.k2=`<b class="h">Estado de los documentos</b>${dl([["Vigentes",String(nOk)],["Por verificar",String(CAT.filter(d=>d._e==="warn").length)],["Desactualizados",String(CAT.filter(d=>d._e==="crit").length)]])}`;
+TIPS.k3=`<b class="h">Información desactualizada</b><ul style="margin:4px 0 0;padding-left:18px">${AL.map(a=>`<li>${esc(a)}</li>`).join("")}</ul>`;
+const kpis=[[CAT.length,"documentos revisados","k1"],[nOk,"vigentes","k2"],[AL.length,"avisos de información desactualizada","k3"]];
+$("#kpis").innerHTML=kpis.map(([n,l,k])=>`<div class="card card-filled kpi"><b>${n}</b><span class="row body-m on-var">${l}<button class="info sl" type="button" data-tip="${k}" aria-label="Detalle: ${l}"><span class="ms" aria-hidden="true">info</span></button></span></div>`).join("");
+
+/* ---------- timeline ---------- */
+const EV=[
+ ["2026-06-08","Último día para anular el 1.er semestre o renunciar","Incluye la desinscripción de ramos. Arts. 57 y 62."],
+ ["2026-06-15","Último día para pedir cambio de sede o carrera (2026-S2)","Arts. 30–35."],
+ ["2026-07-27","Inicio del segundo semestre",""],
+ ["2026-10-12","Inicio de clases del 4.º bimestre","También comienza el período de desinscripción del semestre. Afecta al segundo ciclo de Periodismo y Comunicación Estratégica."],
+ ["2026-10-19","Feria de Conexión Laboral UAI","Misma semana del cierre de notas del 3.er bimestre."],
+ ["2026-11-09","Último día para anular el 2.º semestre o renunciar","También termina la desinscripción. Si anulas dentro de los primeros 30 días del semestre no pagas las colegiaturas (art. 57)."],
+ ["2026-11-23","Fin de clases e inicio de exámenes finales",""],
+ ["2026-12-14","Último día para pedir cambio de sede o carrera (2027-S1)","Semana por confirmar en el calendario. Arts. 30–35. Esa semana vence también el plazo docente para subir las notas a OMEGA."],
+ ["2026-12-28","Inscripción del Semestre de Verano 2027",""]
+].map(([d,t,n],i)=>({d:new Date(d+"T00:00:00"),t,n,k:"ev"+i}));
+const up=EV.filter(e=>{const end=new Date(e.d);end.setDate(end.getDate()+6);return end>=TODAY;}).slice(0,5);
+$("#timeline").innerHTML=up.length?up.map(e=>{const days=Math.round((e.d-TODAY)/864e5);
+  if(e.n)TIPS[e.k]=`<b class="h">${esc(e.t)}</b>${esc(e.n)}`;
+  const badge=e.d<=TODAY?'<span class="badge b-info">Esta semana</span>':`<span class="badge ${days<=45?"b-info":"b-neutral"}">En ${days} días</span>`;
+  return `<li><span class="date">sem.<b>${e.d.getDate()}</b>${MON[e.d.getMonth()]}</span><span class="t">${esc(e.t)}${e.n?`<button class="info sl" type="button" data-tip="${e.k}" aria-label="Más detalle"><span class="ms" aria-hidden="true">info</span></button>`:""}</span>${badge}</li>`;}).join(""):`<li><span class="t on-var">No quedan plazos en el calendario 2026.</span></li>`;
+
+/* ---------- semáforo ---------- */
+function sem(){
+  const v=id=>parseFloat($(id).value), S=v("#s_sem"),D=v("#s_dur"),I=v("#s_ins"),R=v("#s_rep"),P1=v("#s_ppa1"),P2=v("#s_ppa2"),M=v("#s_max"),N=v("#s_dist");
+  const bad=[],warn=[];
+  if(P1<4&&P2<4)bad.push("Tu PPA es inferior a 4,0 en dos semestres seguidos (art. 52).");
+  else if(P1<4)warn.push("Tu PPA de este semestre es inferior a 4,0. Si se repite, es causal de eliminación (art. 52).");
+  if(M>=3)bad.push("Reprobaste un mismo ramo 3 veces (art. 52).");
+  else if(M===2)warn.push("Reprobaste un ramo 2 veces. Una tercera vez es causal de eliminación (art. 52).");
+  const lim=[[3,5],[4,6],[6,7],[8,8],[10,9]].filter(([s])=>D>=10||s<=6);
+  const hit=lim.filter(([s,n])=>S>=s&&N>=n);
+  if(hit.length)bad.push(`Superas el máximo de ramos reprobados para el ${hit[hit.length-1][0]}.º semestre (art. 52).`);
+  else{const nx=lim.find(([s])=>S<=s);if(nx&&N>=nx[1]-1)warn.push(`Estás a ${nx[1]-N} ramo${nx[1]-N===1?"":"s"} del máximo de reprobados para el ${nx[0]}.º semestre (art. 52).`);}
+  if(S>=3&&I>0&&R/I>=.5)warn.push(`Estás en alerta académica: reprobaste el ${Math.round(R/I*100)} % de tus créditos. Debes cumplir el Plan de Apoyo Académico (art. 51).`);
+  if(S===1&&I-R<12)warn.push("Aprobaste menos de 12 créditos, así que te corresponde un semestre recuperativo (art. 49).");
+  const lv=bad.length?["v-crit","error","Podrías estar en causal de eliminación"]:warn.length?["v-warn","warning","Estás en situación de alerta"]:["v-ok","check_circle","No hay alertas con estos datos"];
+  $("#semResult").innerHTML=`<div class="verdict ${lv[0]}"><span class="ms fill" aria-hidden="true">${lv[1]}</span>${lv[2]}</div>`+((bad.length||warn.length)?`<ul>${[...bad,...warn].map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div><button class="btn btn-tonal sl" type="button" data-ask="Estoy en el semestre ${S}, reprobé ${R} de ${I} créditos, mi PPA fue ${P1} y ${P2}, y tengo ${N} ramos distintos reprobados. ¿Qué dice el reglamento sobre mi situación y qué pasos debo seguir?"><span class="ms" aria-hidden="true">auto_awesome</span>Ver qué hacer</button></div>`:"");
+}
+$("#semForm").addEventListener("input",sem);sem();
+
+/* ---------- trámites ---------- */
+const TR=[
+ ["event_busy","Anular el semestre","Se anulan todos los ramos inscritos. Puedes hacerlo hasta 2 veces en tu carrera. Si te lo aprueban dentro de los primeros 30 días del semestre, no pagas las colegiaturas.","Decano de Pregrado","Semana del 9 de noviembre","Art. 57"],
+ ["pause_circle","Suspender los estudios","Se pide antes de que empiece el semestre, por un máximo de 2 semestres, sin deudas ni causal de eliminación. Pagas la matrícula, pero no las colegiaturas.","Decano de Pregrado","Antes del semestre","Art. 58"],
+ ["replay","Reincorporarte","Se pide al terminar la suspensión o la anulación. La Secretaría Académica define con qué plan de estudios sigues.","Decano de Pregrado","Al terminar el período","Art. 60"],
+ ["logout","Renunciar a la carrera","Solo si no estás en causal de eliminación. La renuncia rige desde que se dicta la resolución.","Decano de Pregrado","Hasta el 9 de noviembre","Art. 62"],
+ ["swap_horiz","Cambiarte de carrera","Necesitas un puntaje PAES igual o mayor al del último seleccionado y PPA de al menos 4,0. Otra opción: 55 créditos aprobados y PPA de al menos 5,0.","Decano de Pregrado","Diciembre","Arts. 30–33"],
+ ["location_on","Cambiarte de sede","Debes haber aprobado tu primer semestre y no estar en causal de eliminación ni en semestre recuperativo.","Decanos de ambas sedes","Diciembre","Arts. 34–35"],
+ ["library_add","Estudiar un segundo programa","Debes haber cursado los créditos del 3.er semestre y tener PPA de 4,5 con PAES sobre el corte, o PPA de al menos 5,0. Se paga el arancel más alto.","Decano de Pregrado y VRAI","Según calendario","Arts. 37–40"],
+ ["fact_check","Convalidar ramos","Hasta el 30 % de los créditos, con ramos aprobados hace 6 años o menos y documentos originales. No hay apelación.","Director de Pregrado","10 días hábiles antes","Reglamento de Homologaciones"],
+ ["medical_information","Justificar una inasistencia","Solo por motivos de salud, en WebC Autoservicio.","Secretaría Académica","2 días hábiles","Arts. 24–26"],
+ ["rate_review","Pedir recorrección de una nota","Se pide por escrito. El docente tiene el mismo plazo para responder.","Docente del ramo","5 días hábiles","Art. 21"],
+ ["balance","Pedir reconsideración por eliminación","Se presenta a la Comisión de Gracia, que puede fijar condiciones para que continúes. Su decisión no admite recurso.","Comisión de Gracia","2 días hábiles","Arts. 55–56"],
+ ["workspace_premium","Solicitar un certificado","Se pide en solicitudes.uai.cl o a certificados.sg@uai.cl. Tienes 2 gratis al año de cada tipo. Alumno regular: 3 días hábiles; la mayoría: 10; programas: 20.","Secretaría General","3 a 20 días hábiles","Sitio de certificados UAI"],
+ ["school","Articular con un magíster","Postulas durante el segundo ciclo, indicando tus programas en orden de preferencia. En la Escuela, el 4.º año es también el primero del Magíster en Comunicación e Innovación.","Cada programa y VRAI","Según calendario","Art. 66"],
+ ["join_inner","Articular con Ingeniería Comercial","Concentra tus 4 electivos del plan común en ramos de Administración y aprueba los 7 cursos de la mención Management. Obtienes ambos títulos en 6 años.","Escuela y Decanatura","Desde el 4.º semestre","Folleto y malla de la Escuela"],
+ ["military_tech","Obtener tu título","La nota final es 70 % la nota de egreso y 30 % la defensa. El título se oficializa por decreto del Rector. El protocolo de titulación de la Escuela aún no está publicado.","Secretaría Académica y Secretaría General","Según protocolo","Arts. 28 y 43–47"]
+];
+$("#tramGrid").innerHTML=TR.map(([ic,t,d,w,p,a],i)=>{TIPS["tr"+i]=`<b class="h">${esc(t)}</b>${esc(d)}${dl([["Resuelve",esc(w)],["Plazo",esc(p)],["Norma",esc(a)]])}`;
+ return `<article class="card card-outlined tram"><div class="head"><span class="ic"><span class="ms" aria-hidden="true">${ic}</span></span><h4>${esc(t)}</h4><button class="info sl" type="button" data-tip="tr${i}" aria-label="Detalle: ${esc(t)}"><span class="ms" aria-hidden="true">info</span></button></div><div class="foot"><span class="badge b-neutral"><span class="ms" aria-hidden="true">schedule</span>${esc(p)}</span><button class="btn btn-text sl" type="button" data-ask="${esc("Explícame paso a paso cómo "+t.charAt(0).toLowerCase()+t.slice(1)+": requisitos, a quién se dirige y plazos 2026.")}">Preguntar</button></div></article>`;}).join("");
+
+/* ---------- organigrama ---------- */
+const U={
+ rect:["Rectoría","Rector o Rectora","Oficializa los títulos profesionales por decreto (art. 47) y aprueba los planes de estudio (art. 2)."],
+ vra:["Vicerrectoría Académica y de Investigación","Vicerrector o Vicerrectora","Interpreta el reglamento y resuelve los casos que no prevé (art. 71). Preside la Comisión de Gracia, aprueba los Magíster de Continuidad (art. 66) y autoriza excepciones al segundo programa (art. 38)."],
+ sg:["Secretaría General","Certificados y títulos","Emite certificados (solicitudes.uai.cl, certificados.sg@uai.cl), verifica los grados, recibe los expedientes de título (arts. 41 y 46) y registra renuncias y abandonos (art. 64)."],
+ ddi:["Docencia Institucional","Dirección de Docencia Institucional","Autoriza calificar con aprobado o reprobado (art. 22), define ramos equivalentes cuando cambia la malla (art. 19) e integra la Comisión de Gracia."],
+ dp:["Decanatura de Pregrado","Una por sede","Resuelve anulaciones, suspensiones, reincorporaciones, renuncias, cambios de carrera y sede, y eliminaciones. Define las alertas académicas (art. 51). En Santiago, el Director de Pregrado es Ignacio Contreras."],
+ dirp:["Dirección de Pregrado","Convalidaciones","Aprueba o rechaza convalidaciones y homologaciones, previa consulta a la Escuela (Reglamento de Homologaciones, art. 13)."],
+ sap:["Secretaría Académica","Soledad Juacida","Lleva tu registro académico (art. 67), inscribe ramos del primer semestre y recuperativos (art. 14) y recibe justificaciones y solicitudes. Correo: secretariadepregrado@uai.cl."],
+ sc:["Segundo Ciclo","Pamela Correa","Atiende el ciclo profesional (4.º año en adelante) en el Edificio C. Correo: pamela.correa@uai.cl, anexo 1736."],
+ esc:["Escuela de Comunicaciones y Periodismo","Decana: Magdalena Browne · Vicedecana: Bárbara Fuentes","Imparte la Licenciatura en Comunicación y las carreras de Periodismo y Comunicación Estratégica. Propone los planes de estudio y opina sobre convalidaciones."],
+ per:["Periodismo","Carlos Franco","Director de la carrera. Título de Periodista en 4.º año, con menciones en audiovisual y digital, y en contenidos e industrias creativas."],
+ ce:["Comunicación Estratégica","Patrick Thelen","Director académico. Permite articular con Ingeniería Comercial (mención Management)."],
+ vina:["Sede Viña del Mar","Daniel Avendaño","Director de la Escuela en el campus Viña del Mar."],
+ inv:["Investigación y postgrado","Andrés Scherman · Ernesto Escobar","Dirección de Investigación y direcciones académicas de los magísteres en Comunicación Política y en Dirección Estratégica de Comunicaciones."],
+ cg:["Comisión de Gracia","VRAI, Docencia Institucional y Decanato de Pregrado","Resuelve reconsideraciones por eliminación (2 días hábiles), reingresos y reintegros. Su decisión no admite recurso (arts. 55, 56 y 64)."],
+ omb:["Ombuds","Francisca Rengifo","Instancia confidencial para casos de acoso y discriminación. Oficina 277 del Edificio A. Correo: francisca.rengifo@uai.cl."],
+ dae:["Asuntos Estudiantiles y CADE","María Fernanda Aranguez","Bienestar, inclusión, apoyo psicológico y organizaciones estudiantiles. Correos: asuntos.estudiantiles.stgo@uai.cl y cade.stgo@uai.cl."]
+};
+Object.entries(U).forEach(([k,u])=>TIPS["u_"+k]=`<b class="h">${esc(u[0])}</b><span class="on-var">${esc(u[1])}</span><p style="margin:8px 0 0">${esc(u[2])}</p>`);
+const TREE=["rect",[["vra",[["dp",[["dirp",[]],["sap",[["sc",[]]]]]],["ddi",[]],["esc",[["per",[]],["ce",[]],["vina",[]],["inv",[]]]]]],["sg",[]]]];
+const FC=["esc","per","ce","vina","inv"],BD=["cg","omb","dae"];
+const nodeHTML=k=>`<button class="node sl${FC.includes(k)?" k-fcom":""}${BD.includes(k)?" k-body":""}" type="button" data-tip="u_${k}">${esc(U[k][0])}</button>`;
+const build=([k,kids])=>`<li>${nodeHTML(k)}${kids.length?`<ul>${kids.map(build).join("")}</ul>`:""}</li>`;
+$("#org").innerHTML=build(TREE);
+$("#bodies").innerHTML=BD.map(nodeHTML).join("");
+const LET=[["ABEKUVZ","Paulina Salcedo"],["CDHILT","Camila Díaz"],["GOPSW","Jocelyn Astudillo"],["FJMNQRY","Fernanda Carrasco"]];
+$("#letters").innerHTML=LET.map(([l,n])=>`<div class="card card-filled"><code>${l.split("").join(" ")}</code><span class="body-m">${n}</span></div>`).join("");
+
+/* ---------- documentos ---------- */
+let estF="",showAll=false;
+$("#estChips").innerHTML=[["","Todos"],["ok","Vigentes"],["warn","Por verificar"],["crit","Desactualizados"]].map(([k,l])=>`<button class="chip sl" type="button" data-est="${k}" aria-pressed="${k===""}">${l}</button>`).join("");
+$("#estChips").addEventListener("click",e=>{const b=e.target.closest("[data-est]");if(!b)return;estF=b.dataset.est;document.querySelectorAll("[data-est]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderTable();});
+CAT.forEach((d,i)=>TIPS["d"+i]=`<b class="h">${esc(d.titulo)}</b>${dl([["ID",esc(d.id)],["Tipo",esc(d.tipo)],["Alcance",esc(d.alcance)],["Versión",esc(d.fecha_version)],["Estado",esc(d.estado)],["Notas",esc(d.notas)]])}`);
+function renderTable(){const q=$("#fq").value.toLowerCase();
+ const rows=CAT.map((d,i)=>[d,i]).filter(([d])=>(!q||(d.titulo+d.notas+d.id+d.tipo+d.alcance).toLowerCase().includes(q))&&(!estF||d._e===estF));
+ const vis=(showAll||q||estF)?rows:rows.slice(0,10);
+ $("#tbody").innerHTML=vis.map(([d,i])=>`<tr><td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.titulo)}</a></td><td class="st"><span class="badge ${EST[d._e][1]}">${EST[d._e][0]}</span></td><td class="act"><button class="info sl" type="button" data-tip="d${i}" aria-label="Detalle del documento"><span class="ms" aria-hidden="true">info</span></button></td></tr>`).join("")||`<tr><td colspan="3" class="on-var">No hay documentos que coincidan.</td></tr>`;
+ const mb=$("#moreBtn");mb.hidden=!!(q||estF)||rows.length<=10;mb.textContent=showAll?"Mostrar menos":`Ver los ${rows.length} documentos`;}
+$("#moreBtn").onclick=()=>{showAll=!showAll;renderTable();};
+$("#fq").addEventListener("input",renderTable);renderTable();
+
+/* ---------- nav activa ---------- */
+const secs=["panel","tramites","organigrama","documentos","asistente"].map(id=>document.getElementById(id));
+function spy(){let cur="";const y=scrollY+140;secs.forEach(s=>{if(s.offsetTop<=y)cur=s.id;});document.querySelectorAll("[data-nav]").forEach(a=>a.setAttribute("aria-current",String(a.dataset.nav===cur)));}
+addEventListener("scroll",spy,{passive:true});spy();
+
+/* ---------- asistente ---------- */
+const SUG=["¿Qué es una alerta académica?","¿Cuáles son las causales de eliminación?","¿Hasta cuándo puedo anular el semestre?","¿Cómo convalido ramos de otra universidad?","¿Cómo se calcula la nota final de título?"];
+$("#heroChips").innerHTML=SUG.slice(0,3).map(s=>`<button class="chip sl" type="button" data-ask="${esc(s)}">${esc(s)}</button>`).join("");
+$("#faq").innerHTML=SUG.map(s=>`<button class="chip sl" type="button" data-ask="${esc(s)}">${esc(s)}</button>`).join("");
+const catBrief=CAT.map(d=>`${d.id} | ${d.titulo} | ${d.alcance} | ${d.estado} | ${d.url}`).join("\n");
+const RULES=`Eres "Brújula", asistente de consulta normativa para estudiantes, docentes, administrativos y autoridades de la Escuela de Comunicaciones y Periodismo de la Universidad Adolfo Ibáñez (UAI). Fecha de hoy: ${TODAY.toISOString().slice(0,10)}.
+REGLAS:
+1. Responde SOLO con la BASE NORMATIVA y el CATÁLOGO de abajo. Si la respuesta no está ahí, dilo y sugiere a quién consultar (Secretaría Académica de Pregrado, Escuela, etc.). No inventes fechas, montos, nombres ni artículos.
+2. Escribe en español de Chile, en segunda persona (tú), con frases cortas y voz activa, en tono cercano y profesional. Empieza por la respuesta directa en una oración; luego, si aplica, pasos numerados. Máximo ~180 palabras salvo que pidan detalle. Mayúscula solo al inicio de oración y en nombres propios.
+3. Cita la fuente entre corchetes con el ID del catálogo y el artículo, p. ej. [UAI-REG-01, art. 52]. Termina con una línea "Fuentes:" con los enlaces (URL) usados.
+4. Distingue la norma general UAI de las reglas propias de la Escuela. El Reglamento 2026 rige a todos, pero quienes ingresaron antes de 2026 conservan su reglamento si es más favorable (art. 70).
+5. Las fechas del calendario 2026 son por semana: indícalo y recomienda confirmar en el calendario (UAI-CAL-01).
+6. No des asesoría legal. En casos personales, recomienda confirmar con la Secretaría Académica.
+=== BASE NORMATIVA ===
+${KB}
+=== CATÁLOGO (ID | título | alcance | estado | URL) ===
+${catBrief}`;
+let turns=[],sample=null,ctl=null,busy=false;
+const msgs=$("#msgs");
+function md(t){let h=esc(t);
+ h=h.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>').replace(/(^|[\s(])(https?:\/\/[^\s)<]+)/g,'$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+ const out=[];let list=null;
+ for(const line of h.split("\n")){const m=line.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)/);
+  if(m){const ord=/^\s*\d/.test(line);if(!list||list.o!==ord){if(list)out.push(`</${list.o?"ol":"ul"}>`);list={o:ord};out.push(`<${ord?"ol":"ul"}>`);}out.push(`<li>${m[1]}</li>`);continue;}
+  if(list){out.push(`</${list.o?"ol":"ul"}>`);list=null;}
+  const hd=line.match(/^#{1,4}\s+(.*)/);if(hd){out.push(`<h4>${hd[1]}</h4>`);continue;}
+  if(line.trim())out.push(`<p>${line}</p>`);}
+ if(list)out.push(`</${list.o?"ol":"ul"}>`);return out.join("");}
+function add(role,text){const d=document.createElement("div");d.className="msg "+(role==="user"?"u":"a");
+ if(role==="user")d.textContent=text;else d.innerHTML=md(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+function welcome(){msgs.innerHTML="";add("assistant","Hola, soy **Brújula**. Pregúntame sobre ramos, evaluaciones, alertas académicas, trámites, certificados o articulación. En cada respuesta te indico el documento y el artículo.");}
+welcome();
+const SECTIONS=KB.split(/\n(?=## )/).map(s=>({t:s.split("\n")[0].replace(/^#+\s*/,""),b:s}));
+function localSearch(q){const w=q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").split(/\W+/).filter(x=>x.length>3);
+ const sc=SECTIONS.map(s=>{const b=s.b.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");return {s,n:w.reduce((a,x)=>a+(b.split(x).length-1),0)};}).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,2);
+ if(!sc.length)return "No encontré ese tema en la normativa recopilada. Escribe a la Secretaría Académica de Pregrado (secretariadepregrado@uai.cl).";
+ return "El asistente no está disponible en este momento. Estas secciones de la normativa se relacionan con tu pregunta:\n\n"+sc.map(x=>x.s.b.slice(0,1400)+(x.s.b.length>1400?"\n…":"")).join("\n\n");}
+const ERR={rate_limited:"Hiciste varias preguntas seguidas. Espera un momento.",session_expired:"Tu sesión expiró. Vuelve a iniciar sesión en Claude.",refused:"No puedo responder esa pregunta. Intenta formularla de otra manera.",empty_completion:"No obtuve respuesta. Intenta con una pregunta más concreta.",prompt_too_large:"La conversación es muy larga. Pulsa “Nueva conversación”.",upstream_error:"Se interrumpió la conexión. Vuelve a enviar tu pregunta."};
+async function ask(q){q=q.trim();if(!q||busy)return;hideTip();
+ document.getElementById("asistente").scrollIntoView({block:"start"});
+ busy=true;$("#sendBtn").disabled=true;add("user",q);turns.push({role:"user",content:q});
+ const bubble=add("assistant","Pensando…");
+ if(!sample){bubble.innerHTML=md(localSearch(q));turns.push({role:"assistant",content:"(búsqueda local)"});done();return;}
+ ctl=new AbortController();$("#stopBtn").hidden=false;$("#status").textContent="Buscando en la normativa…";
+ try{const recent=turns.slice(-8);const conv=[{role:"user",content:RULES},...(recent[0].role==="assistant"?recent.slice(1):recent)];
+  const {text,truncated}=await sample(conv,{cache:false,signal:ctl.signal,onText:({text})=>{bubble.innerHTML=md(text);msgs.scrollTop=msgs.scrollHeight;}});
+  bubble.innerHTML=md(text)+(truncated?'<div class="note">La respuesta quedó incompleta. Pregunta por un tema a la vez.</div>':"");
+  turns.push({role:"assistant",content:text});
+ }catch(e){const code=e&&e.code;
+  if(code==="cancelled")bubble.innerHTML=md(e.text||"Detuviste la respuesta.");
+  else if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(code)){sample=null;bubble.innerHTML=md(localSearch(q));}
+  else bubble.innerHTML=md(e.text||"")+`<div class="note">${esc(ERR[code]||ERR.upstream_error)}</div>`;
+  turns.pop();}
+ done();}
+function done(){busy=false;$("#sendBtn").disabled=false;$("#stopBtn").hidden=true;$("#status").textContent="";$("#modeLbl").textContent=sample?"· con IA":"· búsqueda en la normativa";}
+$("#stopBtn").onclick=()=>ctl&&ctl.abort();
+$("#chatForm").addEventListener("submit",e=>{e.preventDefault();const v=$("#chatIn").value;$("#chatIn").value="";ask(v);});
+$("#chatIn").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("#chatForm").requestSubmit();}});
+$("#quickForm").addEventListener("submit",e=>{e.preventDefault();const v=$("#quickQ").value;$("#quickQ").value="";ask(v);});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-ask]");if(b)ask(b.dataset.ask);});
+$("#clearBtn").onclick=()=>{if(ctl)ctl.abort();turns=[];welcome();};
+if(window.claude&&claude.use){claude.use("sample").then(s=>{sample=s;done();}).catch(()=>{sample=null;done();});}else{done();}
+})();
+</script>
