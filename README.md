@@ -17,6 +17,8 @@ Este proyecto es independiente y no es un sitio oficial de la UAI. La informaci�
   - `catalogo_documentos_uai_fcom.csv` / `.json`: el catálogo de fuentes, con URL, alcance, fecha de versión y estado.
   - `descargar_corpus.py`: descarga los PDF del catálogo y extrae su texto, para actualizar la base.
 - `assets/`: favicon de la UAI.
+- `docs/notas-del-proyecto.md`: estructura, criterios por cohorte, decisiones de diseño y pendientes.
+- `versiones/`: iteraciones anteriores del diseño, como referencia. No se publican.
 
 ## Fuentes principales
 
